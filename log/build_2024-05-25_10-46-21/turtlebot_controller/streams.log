@@ -1,0 +1,33 @@
+[0.733s] Invoking command in '/home/ubuntu/ros2_ws/src/turtlebot_controller': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/turtlebot_controller build --build-base /home/ubuntu/ros2_ws/build/turtlebot_controller/build install --record /home/ubuntu/ros2_ws/build/turtlebot_controller/install.log --single-version-externally-managed install_data
+[0.995s] running egg_info
+[0.996s] creating ../../build/turtlebot_controller/turtlebot_controller.egg-info
+[0.996s] writing ../../build/turtlebot_controller/turtlebot_controller.egg-info/PKG-INFO
+[0.996s] writing dependency_links to ../../build/turtlebot_controller/turtlebot_controller.egg-info/dependency_links.txt
+[0.997s] writing entry points to ../../build/turtlebot_controller/turtlebot_controller.egg-info/entry_points.txt
+[0.997s] writing requirements to ../../build/turtlebot_controller/turtlebot_controller.egg-info/requires.txt
+[0.997s] writing top-level names to ../../build/turtlebot_controller/turtlebot_controller.egg-info/top_level.txt
+[0.997s] writing manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'
+[0.999s] reading manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'
+[1.000s] writing manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'
+[1.000s] running build
+[1.000s] running build_py
+[1.000s] creating /home/ubuntu/ros2_ws/build/turtlebot_controller/build
+[1.001s] creating /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib
+[1.001s] creating /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller
+[1.001s] copying turtlebot_controller/__init__.py -> /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller
+[1.001s] running install
+[1.001s] running install_lib
+[1.002s] creating /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.002s] copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/__init__.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.003s] byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/__init__.py to __init__.cpython-310.pyc
+[1.004s] running install_data
+[1.004s] creating /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index
+[1.005s] creating /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index/resource_index
+[1.006s] creating /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index/resource_index/packages
+[1.006s] copying resource/turtlebot_controller -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index/resource_index/packages
+[1.007s] copying package.xml -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/turtlebot_controller
+[1.007s] running install_egg_info
+[1.010s] Copying ../../build/turtlebot_controller/turtlebot_controller.egg-info to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller-0.0.0-py3.10.egg-info
+[1.011s] running install_scripts
+[1.044s] writing list of installed files to '/home/ubuntu/ros2_ws/build/turtlebot_controller/install.log'
+[1.084s] Invoked command in '/home/ubuntu/ros2_ws/src/turtlebot_controller' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/turtlebot_controller build --build-base /home/ubuntu/ros2_ws/build/turtlebot_controller/build install --record /home/ubuntu/ros2_ws/build/turtlebot_controller/install.log --single-version-externally-managed install_data

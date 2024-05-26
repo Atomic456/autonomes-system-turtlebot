@@ -1,0 +1,1 @@
+Invoking command in '/home/ubuntu/ros2_ws/src/build/cv_bridge': CMAKE_PREFIX_PATH=/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble /usr/bin/cmake /home/ubuntu/ros2_ws/src/vision_opencv/cv_bridge -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/install/cv_bridge

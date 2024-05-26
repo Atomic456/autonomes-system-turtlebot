@@ -1,0 +1,24 @@
+[0.067s] Invoking command in '/home/ubuntu/ros2_ws/src/build/image_geometry': CMAKE_PREFIX_PATH=/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble /usr/bin/cmake /home/ubuntu/ros2_ws/src/vision_opencv/image_geometry -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/install/image_geometry
+[0.097s] -- Found ament_cmake_python: 1.3.9 (/opt/ros/humble/share/ament_cmake_python/cmake)
+[0.098s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[0.550s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.014s] [31mCMake Error at CMakeLists.txt:18 (find_package):
+[2.014s]   By not providing "FindOpenCV.cmake" in CMAKE_MODULE_PATH this project has
+[2.014s]   asked CMake to find a package configuration file provided by "OpenCV", but
+[2.015s]   CMake did not find one.
+[2.015s] 
+[2.015s]   Could not find a package configuration file provided by "OpenCV" with any
+[2.015s]   of the following names:
+[2.015s] 
+[2.015s]     OpenCVConfig.cmake
+[2.016s]     opencv-config.cmake
+[2.016s] 
+[2.016s]   Add the installation prefix of "OpenCV" to CMAKE_PREFIX_PATH or set
+[2.016s]   "OpenCV_DIR" to a directory containing one of the above files.  If "OpenCV"
+[2.016s]   provides a separate development package or SDK, be sure it has been
+[2.016s]   installed.
+[2.016s] 
+[2.017s] [0m
+[2.017s] -- Configuring incomplete, errors occurred!
+[2.017s] See also "/home/ubuntu/ros2_ws/src/build/image_geometry/CMakeFiles/CMakeOutput.log".
+[2.019s] Invoked command in '/home/ubuntu/ros2_ws/src/build/image_geometry' returned '1': CMAKE_PREFIX_PATH=/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble /usr/bin/cmake /home/ubuntu/ros2_ws/src/vision_opencv/image_geometry -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/install/image_geometry

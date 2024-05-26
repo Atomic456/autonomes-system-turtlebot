@@ -1,0 +1,39 @@
+[0.028s] Invoking command in '/home/ubuntu/ros2_ws/build/cv_bridge': CMAKE_PREFIX_PATH=/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble /usr/bin/cmake /home/ubuntu/ros2_ws/src/vision_opencv/cv_bridge -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/install/cv_bridge
+[0.157s] -- The C compiler identification is GNU 11.4.0
+[0.440s] -- The CXX compiler identification is GNU 11.4.0
+[0.622s] -- Detecting C compiler ABI info
+[0.760s] -- Detecting C compiler ABI info - done
+[0.773s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.773s] -- Detecting C compile features
+[0.773s] -- Detecting C compile features - done
+[0.778s] -- Detecting CXX compiler ABI info
+[0.958s] -- Detecting CXX compiler ABI info - done
+[0.973s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.973s] -- Detecting CXX compile features
+[0.973s] -- Detecting CXX compile features - done
+[0.975s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.194s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.887s] -- Found Python3: /usr/include/python3.10 (found version "3.10.12") found components: Development NumPy Interpreter Development.Module Development.Embed 
+[1.904s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: python310 
+[1.906s] -- Found rcpputils: 2.4.3 (/opt/ros/humble/share/rcpputils/cmake)
+[2.003s] -- Found sensor_msgs: 4.2.3 (/opt/ros/humble/share/sensor_msgs/cmake)
+[2.035s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[2.040s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[2.051s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[2.069s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.089s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.191s] [31mCMake Error at CMakeLists.txt:47 (find_package):
+[4.191s]   Could not find a package configuration file provided by "OpenCV" (requested
+[4.191s]   version 3) with any of the following names:
+[4.192s] 
+[4.192s]     OpenCVConfig.cmake
+[4.192s]     opencv-config.cmake
+[4.192s] 
+[4.192s]   Add the installation prefix of "OpenCV" to CMAKE_PREFIX_PATH or set
+[4.192s]   "OpenCV_DIR" to a directory containing one of the above files.  If "OpenCV"
+[4.192s]   provides a separate development package or SDK, be sure it has been
+[4.192s]   installed.
+[4.192s] 
+[4.192s] [0m
+[4.192s] -- Configuring incomplete, errors occurred!
+[4.193s] See also "/home/ubuntu/ros2_ws/build/cv_bridge/CMakeFiles/CMakeOutput.log".

@@ -1,0 +1,37 @@
+[0.037s] Invoking command in '/home/ubuntu/ros2_ws/src/build/image_geometry': CMAKE_PREFIX_PATH=/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble /usr/bin/cmake /home/ubuntu/ros2_ws/src/vision_opencv/image_geometry -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/install/image_geometry
+[0.600s] -- The C compiler identification is GNU 11.4.0
+[1.439s] -- The CXX compiler identification is GNU 11.4.0
+[1.727s] -- Detecting C compiler ABI info
+[1.886s] -- Detecting C compiler ABI info - done
+[1.895s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.898s] -- Detecting C compile features
+[1.902s] -- Detecting C compile features - done
+[1.910s] -- Detecting CXX compiler ABI info
+[2.106s] -- Detecting CXX compiler ABI info - done
+[2.120s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.121s] -- Detecting CXX compile features
+[2.122s] -- Detecting CXX compile features - done
+[2.136s] -- Found ament_cmake_python: 1.3.9 (/opt/ros/humble/share/ament_cmake_python/cmake)
+[2.144s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[2.464s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.606s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[4.107s] [31mCMake Error at CMakeLists.txt:18 (find_package):
+[4.107s]   By not providing "FindOpenCV.cmake" in CMAKE_MODULE_PATH this project has
+[4.108s]   asked CMake to find a package configuration file provided by "OpenCV", but
+[4.108s]   CMake did not find one.
+[4.108s] 
+[4.108s]   Could not find a package configuration file provided by "OpenCV" with any
+[4.108s]   of the following names:
+[4.108s] 
+[4.108s]     OpenCVConfig.cmake
+[4.108s]     opencv-config.cmake
+[4.108s] 
+[4.109s]   Add the installation prefix of "OpenCV" to CMAKE_PREFIX_PATH or set
+[4.109s]   "OpenCV_DIR" to a directory containing one of the above files.  If "OpenCV"
+[4.109s]   provides a separate development package or SDK, be sure it has been
+[4.109s]   installed.
+[4.109s] 
+[4.109s] [0m
+[4.109s] -- Configuring incomplete, errors occurred!
+[4.109s] See also "/home/ubuntu/ros2_ws/src/build/image_geometry/CMakeFiles/CMakeOutput.log".
+[4.115s] Invoked command in '/home/ubuntu/ros2_ws/src/build/image_geometry' returned '1': CMAKE_PREFIX_PATH=/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble /usr/bin/cmake /home/ubuntu/ros2_ws/src/vision_opencv/image_geometry -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/install/image_geometry

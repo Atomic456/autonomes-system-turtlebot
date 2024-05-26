@@ -1,0 +1,90 @@
+[0.447s] Invoking command in '/home/ubuntu/ros2_ws/src/turtlebot_controller': PYTEST_ADDOPTS=--tb=short --junit-xml=/home/ubuntu/ros2_ws/build/turtlebot_controller/pytest.xml --junit-prefix=turtlebot_controller -o cache_dir=/home/ubuntu/ros2_ws/build/turtlebot_controller/.pytest_cache PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/build/turtlebot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/python3 -m pytest
+[0.966s] [1m============================= test session starts ==============================[0m
+[0.966s] platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+[0.971s] cachedir: /home/ubuntu/ros2_ws/build/turtlebot_controller/.pytest_cache
+[0.971s] rootdir: /home/ubuntu/ros2_ws/src/turtlebot_controller
+[0.971s] plugins: ament-flake8-0.12.11, ament-xmllint-0.12.11, launch-testing-1.0.6, ament-pep257-0.12.11, ament-lint-0.12.11, launch-testing-ros-0.19.7, ament-copyright-0.12.11, colcon-core-0.16.1, cov-3.0.0
+[1.136s] [1mcollecting ... [0m[1m
+[1.136s] collected 3 items                                                              [0m
+[1.136s] 
+[1.146s] test/test_copyright.py [33ms[0m[32m                                                 [ 33%][0m
+[1.304s] test/test_flake8.py [31mF[0m[31m                                                    [ 66%][0m
+[1.339s] test/test_pep257.py [32m.[0m[31m                                                    [100%][0m
+[1.339s] 
+[1.339s] =================================== FAILURES ===================================
+[1.341s] [31m[1m_________________________________ test_flake8 __________________________________[0m
+[1.342s] [1m[31mtest/test_flake8.py[0m:23: in test_flake8
+[1.405s]     [94massert[39;49;00m rc == [94m0[39;49;00m, \
+[1.406s] [1m[31mE   AssertionError: Found 7 code style errors / warnings:[0m
+[1.406s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:2:1: F401 'cv2' imported but unused[0m
+[1.408s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:7:1: F401 'cv_bridge.CvBridge' imported but unused[0m
+[1.408s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:11:1: E303 too many blank lines (3)[0m
+[1.408s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:18:35: E231 missing whitespace after ':'[0m
+[1.408s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:19:9: F841 local variable 'string' is assigned to but never used[0m
+[1.408s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:28:1: E305 expected 2 blank lines after class or function definition, found 1[0m
+[1.408s] [1m[31mE     ./turtlebot_controller/object_avoidance.py:29:11: W292 no newline at end of file[0m
+[1.408s] [1m[31mE   assert 1 == 0[0m
+[1.408s] ----------------------------- Captured stdout call -----------------------------
+[1.409s] 
+[1.409s] ./turtlebot_controller/object_avoidance.py:2:1: F401 'cv2' imported but unused
+[1.409s] import cv2
+[1.409s] ^
+[1.409s] 
+[1.409s] ./turtlebot_controller/object_avoidance.py:7:1: F401 'cv_bridge.CvBridge' imported but unused
+[1.409s] from cv_bridge import CvBridge
+[1.409s] ^
+[1.409s] 
+[1.409s] ./turtlebot_controller/object_avoidance.py:11:1: E303 too many blank lines (3)
+[1.409s] class ObjectAvoidance(Node):
+[1.409s] ^
+[1.409s] 
+[1.410s] ./turtlebot_controller/object_avoidance.py:18:35: E231 missing whitespace after ':'
+[1.410s]     def preprocess_image(self, img:Image):
+[1.410s]                                   ^
+[1.410s] 
+[1.410s] ./turtlebot_controller/object_avoidance.py:19:9: F841 local variable 'string' is assigned to but never used
+[1.410s]         string = ""
+[1.410s]         ^
+[1.410s] 
+[1.410s] ./turtlebot_controller/object_avoidance.py:28:1: E305 expected 2 blank lines after class or function definition, found 1
+[1.410s] if __name__ == '__main__':
+[1.410s] ^
+[1.410s] 
+[1.411s] ./turtlebot_controller/object_avoidance.py:29:11: W292 no newline at end of file
+[1.411s]     main()          ^
+[1.411s] 
+[1.411s] 1     E231 missing whitespace after ':'
+[1.411s] 1     E303 too many blank lines (3)
+[1.411s] 1     E305 expected 2 blank lines after class or function definition, found 1
+[1.411s] 2     F401 'cv2' imported but unused
+[1.411s] 1     F841 local variable 'string' is assigned to but never used
+[1.411s] 1     W292 no newline at end of file
+[1.411s] 
+[1.411s] 6 files checked
+[1.411s] 7 errors
+[1.412s] 
+[1.412s] 'E'-type errors: 3
+[1.412s] 'F'-type errors: 3
+[1.412s] 'W'-type errors: 1
+[1.412s] 
+[1.412s] Checked files:
+[1.412s] 
+[1.412s] * ./setup.py
+[1.412s] * ./test/test_pep257.py
+[1.412s] * ./test/test_copyright.py
+[1.412s] * ./test/test_flake8.py
+[1.413s] * ./turtlebot_controller/__init__.py
+[1.413s] * ./turtlebot_controller/object_avoidance.py
+[1.413s] ----------------------------- Captured stderr call -----------------------------
+[1.413s] option --max-complexity: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[1.413s] [33m=============================== warnings summary ===============================[0m
+[1.413s] test/test_flake8.py::test_flake8
+[1.413s] test/test_flake8.py::test_flake8
+[1.413s]   Warning: SelectableGroups dict interface is deprecated. Use select.
+[1.413s] 
+[1.413s] -- Docs: https://docs.pytest.org/en/stable/warnings.html
+[1.413s] - generated xml file: /home/ubuntu/ros2_ws/build/turtlebot_controller/pytest.xml -
+[1.414s] =========================== short test summary info ============================
+[1.414s] FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 7 code style ...
+[1.414s] [31m============== [31m[1m1 failed[0m, [32m1 passed[0m, [33m1 skipped[0m, [33m2 warnings[0m[31m in 0.44s[0m[31m ==============[0m
+[1.557s] Invoked command in '/home/ubuntu/ros2_ws/src/turtlebot_controller' returned '1': PYTEST_ADDOPTS=--tb=short --junit-xml=/home/ubuntu/ros2_ws/build/turtlebot_controller/pytest.xml --junit-prefix=turtlebot_controller -o cache_dir=/home/ubuntu/ros2_ws/build/turtlebot_controller/.pytest_cache PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/build/turtlebot_controller:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/python3 -m pytest

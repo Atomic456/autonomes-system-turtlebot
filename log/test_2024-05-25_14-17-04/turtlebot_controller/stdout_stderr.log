@@ -1,0 +1,88 @@
+[1m============================= test session starts ==============================[0m
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+cachedir: /home/ubuntu/ros2_ws/build/turtlebot_controller/.pytest_cache
+rootdir: /home/ubuntu/ros2_ws/src/turtlebot_controller
+plugins: ament-flake8-0.12.11, ament-xmllint-0.12.11, launch-testing-1.0.6, ament-pep257-0.12.11, ament-lint-0.12.11, launch-testing-ros-0.19.7, ament-copyright-0.12.11, colcon-core-0.16.1, cov-3.0.0
+[1mcollecting ... [0m[1m
+collected 3 items                                                              [0m
+
+test/test_copyright.py [33ms[0m[32m                                                 [ 33%][0m
+test/test_flake8.py [31mF[0m[31m                                                    [ 66%][0m
+test/test_pep257.py [32m.[0m[31m                                                    [100%][0m
+
+=================================== FAILURES ===================================
+[31m[1m_________________________________ test_flake8 __________________________________[0m
+[1m[31mtest/test_flake8.py[0m:23: in test_flake8
+    [94massert[39;49;00m rc == [94m0[39;49;00m, \
+[1m[31mE   AssertionError: Found 7 code style errors / warnings:[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:2:1: F401 'cv2' imported but unused[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:7:1: F401 'cv_bridge.CvBridge' imported but unused[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:11:1: E303 too many blank lines (3)[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:18:35: E231 missing whitespace after ':'[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:19:9: F841 local variable 'string' is assigned to but never used[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:28:1: E305 expected 2 blank lines after class or function definition, found 1[0m
+[1m[31mE     ./turtlebot_controller/object_avoidance.py:29:11: W292 no newline at end of file[0m
+[1m[31mE   assert 1 == 0[0m
+----------------------------- Captured stdout call -----------------------------
+
+./turtlebot_controller/object_avoidance.py:2:1: F401 'cv2' imported but unused
+import cv2
+^
+
+./turtlebot_controller/object_avoidance.py:7:1: F401 'cv_bridge.CvBridge' imported but unused
+from cv_bridge import CvBridge
+^
+
+./turtlebot_controller/object_avoidance.py:11:1: E303 too many blank lines (3)
+class ObjectAvoidance(Node):
+^
+
+./turtlebot_controller/object_avoidance.py:18:35: E231 missing whitespace after ':'
+    def preprocess_image(self, img:Image):
+                                  ^
+
+./turtlebot_controller/object_avoidance.py:19:9: F841 local variable 'string' is assigned to but never used
+        string = ""
+        ^
+
+./turtlebot_controller/object_avoidance.py:28:1: E305 expected 2 blank lines after class or function definition, found 1
+if __name__ == '__main__':
+^
+
+./turtlebot_controller/object_avoidance.py:29:11: W292 no newline at end of file
+    main()          ^
+
+1     E231 missing whitespace after ':'
+1     E303 too many blank lines (3)
+1     E305 expected 2 blank lines after class or function definition, found 1
+2     F401 'cv2' imported but unused
+1     F841 local variable 'string' is assigned to but never used
+1     W292 no newline at end of file
+
+6 files checked
+7 errors
+
+'E'-type errors: 3
+'F'-type errors: 3
+'W'-type errors: 1
+
+Checked files:
+
+* ./setup.py
+* ./test/test_pep257.py
+* ./test/test_copyright.py
+* ./test/test_flake8.py
+* ./turtlebot_controller/__init__.py
+* ./turtlebot_controller/object_avoidance.py
+----------------------------- Captured stderr call -----------------------------
+option --max-complexity: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[33m=============================== warnings summary ===============================[0m
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+- generated xml file: /home/ubuntu/ros2_ws/build/turtlebot_controller/pytest.xml -
+=========================== short test summary info ============================
+FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 7 code style ...
+[31m============== [31m[1m1 failed[0m, [32m1 passed[0m, [33m1 skipped[0m, [33m2 warnings[0m[31m in 0.44s[0m[31m ==============[0m

@@ -1,0 +1,21 @@
+[0.779s] Invoking command in '/home/ubuntu/ros2_ws/build/turtlebot_controller': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ubuntu/ros2_ws/build/turtlebot_controller/build --no-deps symlink_data --force
+[1.120s] running develop
+[1.121s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[1.122s]   warnings.warn(
+[1.259s] running egg_info
+[1.259s] writing turtlebot_controller.egg-info/PKG-INFO
+[1.259s] writing dependency_links to turtlebot_controller.egg-info/dependency_links.txt
+[1.260s] writing entry points to turtlebot_controller.egg-info/entry_points.txt
+[1.260s] writing requirements to turtlebot_controller.egg-info/requires.txt
+[1.260s] writing top-level names to turtlebot_controller.egg-info/top_level.txt
+[1.261s] reading manifest file 'turtlebot_controller.egg-info/SOURCES.txt'
+[1.262s] writing manifest file 'turtlebot_controller.egg-info/SOURCES.txt'
+[1.267s] running build_ext
+[1.267s] Creating /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot-controller.egg-link (link to .)
+[1.268s] Installing turtlebot_controller script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[1.269s] 
+[1.269s] Installed /home/ubuntu/ros2_ws/build/turtlebot_controller
+[1.270s] running symlink_data
+[1.270s] symbolically linking /home/ubuntu/ros2_ws/build/turtlebot_controller/resource/turtlebot_controller -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index/resource_index/packages
+[1.270s] symbolically linking /home/ubuntu/ros2_ws/build/turtlebot_controller/package.xml -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/turtlebot_controller
+[1.325s] Invoked command in '/home/ubuntu/ros2_ws/build/turtlebot_controller' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ubuntu/ros2_ws/build/turtlebot_controller/build --no-deps symlink_data --force

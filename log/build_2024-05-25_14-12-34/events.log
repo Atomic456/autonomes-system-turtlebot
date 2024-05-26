@@ -1,0 +1,165 @@
+[0.000000] (-) TimerEvent: {}
+[0.000497] (cv_bridge) JobQueued: {'identifier': 'cv_bridge', 'dependencies': OrderedDict()}
+[0.000605] (image_geometry) JobQueued: {'identifier': 'image_geometry', 'dependencies': OrderedDict()}
+[0.000676] (turtlebot_controller) JobQueued: {'identifier': 'turtlebot_controller', 'dependencies': OrderedDict()}
+[0.001006] (opencv_tests) JobQueued: {'identifier': 'opencv_tests', 'dependencies': OrderedDict([('cv_bridge', '/home/ubuntu/ros2_ws/install/cv_bridge')])}
+[0.001094] (vision_opencv) JobQueued: {'identifier': 'vision_opencv', 'dependencies': OrderedDict([('cv_bridge', '/home/ubuntu/ros2_ws/install/cv_bridge'), ('image_geometry', '/home/ubuntu/ros2_ws/install/image_geometry')])}
+[0.001432] (cv_bridge) JobStarted: {'identifier': 'cv_bridge'}
+[0.009487] (image_geometry) JobStarted: {'identifier': 'image_geometry'}
+[0.014223] (turtlebot_controller) JobStarted: {'identifier': 'turtlebot_controller'}
+[0.026116] (cv_bridge) JobProgress: {'identifier': 'cv_bridge', 'progress': 'cmake'}
+[0.026676] (cv_bridge) Command: {'cmd': ['/usr/bin/cmake', '/home/ubuntu/ros2_ws/src/vision_opencv/cv_bridge', '-DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/install/cv_bridge'], 'cwd': '/home/ubuntu/ros2_ws/build/cv_bridge', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'ubuntu'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/ubuntu'), ('OLDPWD', '/home/ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/ubuntu/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'ubuntu'), ('NAME', 'DESKTOP-QQU0VR5'), ('WSL_INTEROP', '/run/WSL/11131_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu22.04LTS_2204.3.63.0_x64__79rhkp1fndgsc:/mnt/d/Programme/Installiert/Python/Scripts/:/mnt/d/Programme/Installiert/Python/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/d/Programme/Installiert/MathWorks/runtime/win64:/mnt/d/Programme/Installiert/MathWorks/bin:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Users/marku/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/marku/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '12'), ('AMENT_PREFIX_PATH', '/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/ubuntu/ros2_ws/build/cv_bridge'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/ubuntu/ros2_ws/build/turtlebot_controller:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble')]), 'shell': False}
+[0.035268] (image_geometry) JobProgress: {'identifier': 'image_geometry', 'progress': 'cmake'}
+[0.036572] (image_geometry) Command: {'cmd': ['/usr/bin/cmake', '/home/ubuntu/ros2_ws/src/vision_opencv/image_geometry', '-DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/install/image_geometry'], 'cwd': '/home/ubuntu/ros2_ws/build/image_geometry', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'ubuntu'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/ubuntu'), ('OLDPWD', '/home/ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/ubuntu/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'ubuntu'), ('NAME', 'DESKTOP-QQU0VR5'), ('WSL_INTEROP', '/run/WSL/11131_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu22.04LTS_2204.3.63.0_x64__79rhkp1fndgsc:/mnt/d/Programme/Installiert/Python/Scripts/:/mnt/d/Programme/Installiert/Python/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/d/Programme/Installiert/MathWorks/runtime/win64:/mnt/d/Programme/Installiert/MathWorks/bin:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Users/marku/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/marku/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '12'), ('AMENT_PREFIX_PATH', '/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/ubuntu/ros2_ws/build/image_geometry'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/ubuntu/ros2_ws/build/turtlebot_controller:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble')]), 'shell': False}
+[0.098823] (-) TimerEvent: {}
+[0.158354] (cv_bridge) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.167558] (image_geometry) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.198822] (-) TimerEvent: {}
+[0.299739] (-) TimerEvent: {}
+[0.400633] (-) TimerEvent: {}
+[0.436236] (image_geometry) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.441102] (cv_bridge) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.500733] (-) TimerEvent: {}
+[0.601438] (-) TimerEvent: {}
+[0.617756] (image_geometry) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.623391] (cv_bridge) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.701552] (-) TimerEvent: {}
+[0.754329] (image_geometry) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.761540] (cv_bridge) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.764209] (image_geometry) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.764804] (image_geometry) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.765500] (image_geometry) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.773524] (cv_bridge) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.774147] (image_geometry) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.774513] (cv_bridge) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.774691] (cv_bridge) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.779324] (cv_bridge) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.801862] (-) TimerEvent: {}
+[0.903285] (-) TimerEvent: {}
+[0.959425] (cv_bridge) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.959648] (image_geometry) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.970304] (turtlebot_controller) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'develop', '--uninstall', '--editable', '--build-directory', '/home/ubuntu/ros2_ws/build/turtlebot_controller/build'], 'cwd': '/home/ubuntu/ros2_ws/build/turtlebot_controller', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'ubuntu', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/ubuntu', 'OLDPWD': '/home/ubuntu', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-22.04', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/ubuntu/ros2_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'ubuntu', 'NAME': 'DESKTOP-QQU0VR5', 'WSL_INTEROP': '/run/WSL/11131_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu22.04LTS_2204.3.63.0_x64__79rhkp1fndgsc:/mnt/d/Programme/Installiert/Python/Scripts/:/mnt/d/Programme/Installiert/Python/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/d/Programme/Installiert/MathWorks/runtime/win64:/mnt/d/Programme/Installiert/MathWorks/bin:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Users/marku/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/marku/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'ROS_DOMAIN_ID': '12', 'AMENT_PREFIX_PATH': '/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/ubuntu/ros2_ws/build/turtlebot_controller', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/build/turtlebot_controller:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': ''}, 'shell': False}
+[0.974238] (cv_bridge) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.974421] (cv_bridge) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.974515] (cv_bridge) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.976208] (cv_bridge) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[0.976606] (image_geometry) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.977138] (image_geometry) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.978146] (image_geometry) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.980560] (image_geometry) StdoutLine: {'line': b'-- Found ament_cmake_python: 1.3.9 (/opt/ros/humble/share/ament_cmake_python/cmake)\n'}
+[0.984503] (image_geometry) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[1.003432] (-) TimerEvent: {}
+[1.103993] (-) TimerEvent: {}
+[1.186800] (image_geometry) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[1.195373] (cv_bridge) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[1.204172] (-) TimerEvent: {}
+[1.304784] (-) TimerEvent: {}
+[1.343189] (turtlebot_controller) StdoutLine: {'line': b'running develop\n'}
+[1.404967] (-) TimerEvent: {}
+[1.505439] (-) TimerEvent: {}
+[1.528334] (turtlebot_controller) StdoutLine: {'line': b'Removing /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot-controller.egg-link (link to .)\n'}
+[1.594151] (turtlebot_controller) CommandEnded: {'returncode': 0}
+[1.596252] (turtlebot_controller) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/turtlebot_controller', 'build', '--build-base', '/home/ubuntu/ros2_ws/build/turtlebot_controller/build', 'install', '--record', '/home/ubuntu/ros2_ws/build/turtlebot_controller/install.log', '--single-version-externally-managed', 'install_data', '--force'], 'cwd': '/home/ubuntu/ros2_ws/src/turtlebot_controller', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'ubuntu', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/ubuntu', 'OLDPWD': '/home/ubuntu', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-22.04', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/ubuntu/ros2_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'ubuntu', 'NAME': 'DESKTOP-QQU0VR5', 'WSL_INTEROP': '/run/WSL/11131_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu22.04LTS_2204.3.63.0_x64__79rhkp1fndgsc:/mnt/d/Programme/Installiert/Python/Scripts/:/mnt/d/Programme/Installiert/Python/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/d/Programme/Installiert/MathWorks/runtime/win64:/mnt/d/Programme/Installiert/MathWorks/bin:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Users/marku/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/marku/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'ROS_DOMAIN_ID': '12', 'AMENT_PREFIX_PATH': '/home/ubuntu/ros2_ws/install/turtlebot_controller:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/ubuntu/ros2_ws/build/turtlebot_controller', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/build/turtlebot_controller:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': ''}, 'shell': False}
+[1.605603] (-) TimerEvent: {}
+[1.706154] (-) TimerEvent: {}
+[1.806704] (-) TimerEvent: {}
+[1.888728] (cv_bridge) StdoutLine: {'line': b'-- Found Python3: /usr/include/python3.10 (found version "3.10.12") found components: Development NumPy Interpreter Development.Module Development.Embed \n'}
+[1.905386] (cv_bridge) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: python310 \n'}
+[1.906819] (-) TimerEvent: {}
+[1.907219] (cv_bridge) StdoutLine: {'line': b'-- Found rcpputils: 2.4.3 (/opt/ros/humble/share/rcpputils/cmake)\n'}
+[1.940807] (turtlebot_controller) StdoutLine: {'line': b'running egg_info\n'}
+[1.941671] (turtlebot_controller) StdoutLine: {'line': b'writing ../../build/turtlebot_controller/turtlebot_controller.egg-info/PKG-INFO\n'}
+[1.942134] (turtlebot_controller) StdoutLine: {'line': b'writing dependency_links to ../../build/turtlebot_controller/turtlebot_controller.egg-info/dependency_links.txt\n'}
+[1.942548] (turtlebot_controller) StdoutLine: {'line': b'writing entry points to ../../build/turtlebot_controller/turtlebot_controller.egg-info/entry_points.txt\n'}
+[1.942862] (turtlebot_controller) StdoutLine: {'line': b'writing requirements to ../../build/turtlebot_controller/turtlebot_controller.egg-info/requires.txt\n'}
+[1.943169] (turtlebot_controller) StdoutLine: {'line': b'writing top-level names to ../../build/turtlebot_controller/turtlebot_controller.egg-info/top_level.txt\n'}
+[1.945633] (turtlebot_controller) StdoutLine: {'line': b"reading manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'\n"}
+[1.946859] (turtlebot_controller) StdoutLine: {'line': b"writing manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'\n"}
+[1.947138] (turtlebot_controller) StdoutLine: {'line': b'running build\n'}
+[1.947252] (turtlebot_controller) StdoutLine: {'line': b'running build_py\n'}
+[1.950523] (turtlebot_controller) StdoutLine: {'line': b'copying turtlebot_controller/object_avoidance.py -> /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller\n'}
+[1.953670] (turtlebot_controller) StdoutLine: {'line': b'running install\n'}
+[1.954201] (turtlebot_controller) StdoutLine: {'line': b'running install_lib\n'}
+[1.955824] (turtlebot_controller) StdoutLine: {'line': b'creating /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller\n'}
+[1.956236] (turtlebot_controller) StdoutLine: {'line': b'copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/__init__.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller\n'}
+[1.956601] (turtlebot_controller) StdoutLine: {'line': b'copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/object_avoidance.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller\n'}
+[1.957168] (turtlebot_controller) StdoutLine: {'line': b'byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/__init__.py to __init__.cpython-310.pyc\n'}
+[1.957819] (turtlebot_controller) StdoutLine: {'line': b'byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/object_avoidance.py to object_avoidance.cpython-310.pyc\n'}
+[1.958391] (turtlebot_controller) StdoutLine: {'line': b'running install_data\n'}
+[1.958734] (turtlebot_controller) StdoutLine: {'line': b'copying resource/turtlebot_controller -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index/resource_index/packages\n'}
+[1.959330] (turtlebot_controller) StdoutLine: {'line': b'copying package.xml -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/turtlebot_controller\n'}
+[1.959690] (turtlebot_controller) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.962001] (turtlebot_controller) StdoutLine: {'line': b'Copying ../../build/turtlebot_controller/turtlebot_controller.egg-info to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller-0.0.0-py3.10.egg-info\n'}
+[1.965827] (turtlebot_controller) StdoutLine: {'line': b'running install_scripts\n'}
+[1.994712] (turtlebot_controller) StdoutLine: {'line': b'Installing turtlebot_controller script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller\n'}
+[1.995662] (turtlebot_controller) StdoutLine: {'line': b"writing list of installed files to '/home/ubuntu/ros2_ws/build/turtlebot_controller/install.log'\n"}
+[2.004423] (cv_bridge) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.3 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[2.007028] (-) TimerEvent: {}
+[2.035654] (cv_bridge) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.041185] (cv_bridge) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.048706] (turtlebot_controller) CommandEnded: {'returncode': 0}
+[2.051710] (cv_bridge) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.064245] (turtlebot_controller) JobEnded: {'identifier': 'turtlebot_controller', 'rc': 0}
+[2.069842] (cv_bridge) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.090347] (cv_bridge) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.107302] (-) TimerEvent: {}
+[2.207784] (-) TimerEvent: {}
+[2.308202] (-) TimerEvent: {}
+[2.316362] (image_geometry) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:18 (find_package):\n'}
+[2.316773] (image_geometry) StderrLine: {'line': b'  By not providing "FindOpenCV.cmake" in CMAKE_MODULE_PATH this project has\n'}
+[2.316870] (image_geometry) StderrLine: {'line': b'  asked CMake to find a package configuration file provided by "OpenCV", but\n'}
+[2.316949] (image_geometry) StderrLine: {'line': b'  CMake did not find one.\n'}
+[2.317024] (image_geometry) StderrLine: {'line': b'\n'}
+[2.317108] (image_geometry) StderrLine: {'line': b'  Could not find a package configuration file provided by "OpenCV" with any\n'}
+[2.317190] (image_geometry) StderrLine: {'line': b'  of the following names:\n'}
+[2.317262] (image_geometry) StderrLine: {'line': b'\n'}
+[2.317329] (image_geometry) StderrLine: {'line': b'    OpenCVConfig.cmake\n'}
+[2.317464] (image_geometry) StderrLine: {'line': b'    opencv-config.cmake\n'}
+[2.317587] (image_geometry) StderrLine: {'line': b'\n'}
+[2.317661] (image_geometry) StderrLine: {'line': b'  Add the installation prefix of "OpenCV" to CMAKE_PREFIX_PATH or set\n'}
+[2.317732] (image_geometry) StderrLine: {'line': b'  "OpenCV_DIR" to a directory containing one of the above files.  If "OpenCV"\n'}
+[2.317804] (image_geometry) StderrLine: {'line': b'  provides a separate development package or SDK, be sure it has been\n'}
+[2.317873] (image_geometry) StderrLine: {'line': b'  installed.\n'}
+[2.317965] (image_geometry) StderrLine: {'line': b'\n'}
+[2.318032] (image_geometry) StderrLine: {'line': b'\x1b[0m\n'}
+[2.318100] (image_geometry) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[2.318182] (image_geometry) StdoutLine: {'line': b'See also "/home/ubuntu/ros2_ws/build/image_geometry/CMakeFiles/CMakeOutput.log".\n'}
+[2.323267] (image_geometry) CommandEnded: {'returncode': 1}
+[2.345129] (image_geometry) JobEnded: {'identifier': 'image_geometry', 'rc': 1}
+[2.408404] (-) TimerEvent: {}
+[2.508911] (-) TimerEvent: {}
+[2.609438] (-) TimerEvent: {}
+[2.709961] (-) TimerEvent: {}
+[2.810390] (-) TimerEvent: {}
+[2.910893] (-) TimerEvent: {}
+[3.011473] (-) TimerEvent: {}
+[3.111974] (-) TimerEvent: {}
+[3.212486] (-) TimerEvent: {}
+[3.312952] (-) TimerEvent: {}
+[3.413396] (-) TimerEvent: {}
+[3.513854] (-) TimerEvent: {}
+[3.614354] (-) TimerEvent: {}
+[3.714796] (-) TimerEvent: {}
+[3.815285] (-) TimerEvent: {}
+[3.915735] (-) TimerEvent: {}
+[4.016178] (-) TimerEvent: {}
+[4.116625] (-) TimerEvent: {}
+[4.192311] (cv_bridge) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:47 (find_package):\n'}
+[4.192726] (cv_bridge) StderrLine: {'line': b'  Could not find a package configuration file provided by "OpenCV" (requested\n'}
+[4.192854] (cv_bridge) StderrLine: {'line': b'  version 3) with any of the following names:\n'}
+[4.193013] (cv_bridge) StderrLine: {'line': b'\n'}
+[4.193121] (cv_bridge) StderrLine: {'line': b'    OpenCVConfig.cmake\n'}
+[4.193209] (cv_bridge) StderrLine: {'line': b'    opencv-config.cmake\n'}
+[4.193292] (cv_bridge) StderrLine: {'line': b'\n'}
+[4.193373] (cv_bridge) StderrLine: {'line': b'  Add the installation prefix of "OpenCV" to CMAKE_PREFIX_PATH or set\n'}
+[4.193456] (cv_bridge) StderrLine: {'line': b'  "OpenCV_DIR" to a directory containing one of the above files.  If "OpenCV"\n'}
+[4.193538] (cv_bridge) StderrLine: {'line': b'  provides a separate development package or SDK, be sure it has been\n'}
+[4.193620] (cv_bridge) StderrLine: {'line': b'  installed.\n'}
+[4.193700] (cv_bridge) StderrLine: {'line': b'\n'}
+[4.193780] (cv_bridge) StderrLine: {'line': b'\x1b[0m\n'}
+[4.193858] (cv_bridge) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[4.193982] (cv_bridge) StdoutLine: {'line': b'See also "/home/ubuntu/ros2_ws/build/cv_bridge/CMakeFiles/CMakeOutput.log".\n'}
+[4.202239] (cv_bridge) JobEnded: {'identifier': 'cv_bridge', 'rc': 'SIGINT'}
+[4.213400] (opencv_tests) JobSkipped: {'identifier': 'opencv_tests'}
+[4.213515] (vision_opencv) JobSkipped: {'identifier': 'vision_opencv'}
+[4.213589] (-) EventReactorShutdown: {}
