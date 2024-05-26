@@ -1,0 +1,43 @@
+[0.693s] Invoking command in '/home/ubuntu/ros2_ws/build/turtlebot_controller': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/ubuntu/ros2_ws/build/turtlebot_controller/build
+[0.963s] running develop
+[1.105s] Removing /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot-controller.egg-link (link to .)
+[1.163s] Invoked command in '/home/ubuntu/ros2_ws/build/turtlebot_controller' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/ubuntu/ros2_ws/build/turtlebot_controller/build
+[1.166s] Invoking command in '/home/ubuntu/ros2_ws/src/turtlebot_controller': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/turtlebot_controller build --build-base /home/ubuntu/ros2_ws/build/turtlebot_controller/build install --record /home/ubuntu/ros2_ws/build/turtlebot_controller/install.log --single-version-externally-managed install_data --force
+[1.414s] running egg_info
+[1.415s] writing ../../build/turtlebot_controller/turtlebot_controller.egg-info/PKG-INFO
+[1.416s] writing dependency_links to ../../build/turtlebot_controller/turtlebot_controller.egg-info/dependency_links.txt
+[1.416s] writing entry points to ../../build/turtlebot_controller/turtlebot_controller.egg-info/entry_points.txt
+[1.416s] writing requirements to ../../build/turtlebot_controller/turtlebot_controller.egg-info/requires.txt
+[1.417s] writing top-level names to ../../build/turtlebot_controller/turtlebot_controller.egg-info/top_level.txt
+[1.420s] reading manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'
+[1.421s] writing manifest file '../../build/turtlebot_controller/turtlebot_controller.egg-info/SOURCES.txt'
+[1.422s] running build
+[1.422s] running build_py
+[1.422s] copying turtlebot_controller/color_conversion.py -> /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller
+[1.423s] copying turtlebot_controller/image_publisher.py -> /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller
+[1.424s] copying turtlebot_controller/image_subscriber.py -> /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller
+[1.425s] copying turtlebot_controller/object_avoidance.py -> /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller
+[1.425s] running install
+[1.426s] running install_lib
+[1.427s] creating /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.428s] copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/color_conversion.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.428s] copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/image_publisher.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.428s] copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/image_subscriber.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.428s] copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/__init__.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.428s] copying /home/ubuntu/ros2_ws/build/turtlebot_controller/build/lib/turtlebot_controller/object_avoidance.py -> /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller
+[1.429s] byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/color_conversion.py to color_conversion.cpython-310.pyc
+[1.430s] byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/image_publisher.py to image_publisher.cpython-310.pyc
+[1.431s] byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/image_subscriber.py to image_subscriber.cpython-310.pyc
+[1.432s] byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/__init__.py to __init__.cpython-310.pyc
+[1.432s] byte-compiling /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller/object_avoidance.py to object_avoidance.cpython-310.pyc
+[1.433s] running install_data
+[1.433s] copying resource/turtlebot_controller -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/ament_index/resource_index/packages
+[1.434s] copying package.xml -> /home/ubuntu/ros2_ws/install/turtlebot_controller/share/turtlebot_controller
+[1.435s] running install_egg_info
+[1.437s] Copying ../../build/turtlebot_controller/turtlebot_controller.egg-info to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot_controller-0.0.0-py3.10.egg-info
+[1.442s] running install_scripts
+[1.466s] Installing image_publisher script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[1.466s] Installing image_subscriber script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[1.467s] Installing turtlebot_controller script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[1.467s] writing list of installed files to '/home/ubuntu/ros2_ws/build/turtlebot_controller/install.log'
+[1.506s] Invoked command in '/home/ubuntu/ros2_ws/src/turtlebot_controller' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/turtlebot_controller build --build-base /home/ubuntu/ros2_ws/build/turtlebot_controller/build install --record /home/ubuntu/ros2_ws/build/turtlebot_controller/install.log --single-version-externally-managed install_data --force

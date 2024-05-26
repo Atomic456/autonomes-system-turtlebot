@@ -7,7 +7,6 @@ import math
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
-from color_conversion import *
 
 
 
@@ -62,25 +61,41 @@ class ObjectAvoidance(Node):
         img = self.cv_bridge.imgmsg_to_cv2(img)
         hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-        lower_limit, upper_limit = get_limits([0,0,255])
-        self.get_logger().info(lower_limit, upper_limit)
+        lower_limit, upper_limit = self.get_limits(color=[0, 0, 255])
         red_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
         cv2.imwrite(save_img_path+"red_img"+str(self.counter)+".jpg", red_img)
         self.counter = self.counter+1
 
-        lower_limit, upper_limit = get_limits([255,0,0])
-        self.get_logger().info(lower_limit, upper_limit)
+        lower_limit, upper_limit = self.get_limits(color=[255, 0, 0])
         blue_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
         cv2.imwrite(save_img_path+"blue_img"+str(self.counter)+".jpg", blue_img)
         self.counter = self.counter+1
 
-        lower_limit, upper_limit = get_limits([0,255,255])
-        self.get_logger().info(lower_limit, upper_limit)
+        lower_limit, upper_limit = self.get_limits(color=[0, 255, 255])
         yellow_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
         cv2.imwrite(save_img_path+"yellow_img"+str(self.counter)+".jpg", yellow_img)
         self.counter = self.counter+1
 
         return red_img, yellow_img, blue_img
+    
+    def get_limits(self, color):
+        c = np.uint8([[color]])  # BGR values
+        hsvC = cv2.cvtColor(c, cv2.COLOR_BGR2HSV)
+
+        hue = hsvC[0][0][0]  # Get the hue value
+
+        # Handle red hue wrap-around
+        if hue >= 165:  # Upper limit for divided red hue
+            lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
+            upperLimit = np.array([180, 255, 255], dtype=np.uint8)
+        elif hue <= 15:  # Lower limit for divided red hue
+            lowerLimit = np.array([0, 100, 100], dtype=np.uint8)
+            upperLimit = np.array([hue + 10, 255, 255], dtype=np.uint8)
+        else:
+            lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
+            upperLimit = np.array([hue + 10, 255, 255], dtype=np.uint8)
+
+        return lowerLimit, upperLimit
 
 
 def main(args=None):

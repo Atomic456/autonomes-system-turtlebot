@@ -13,6 +13,7 @@
   <depend>cv_bridge</depend>
   <depend>numpy</depend>
   <depend>math</depend>
+  <depend>color_conversion</depend>
   
   
 
