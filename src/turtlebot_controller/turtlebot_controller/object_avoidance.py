@@ -7,7 +7,7 @@ import math
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
-from color_conversion import get_limits
+from color_conversion import *
 
 
 
@@ -15,9 +15,11 @@ class ObjectAvoidance(Node):
 
     def __init__(self):
         super().__init__("objavo_node")
-        self.create_subscription(Image, "/image_raw", self.preprocess_image, 10)
+        #self.create_subscription(Image, "/image_raw", self.preprocess_image, 10)
+        self.counter = 0
+        self.create_subscription(Image, "/image_raw", self.color_mask_img, 10)
         self.cv_bridge = CvBridge()
-        self.get_logger().info("Contructor run successfully!")
+        self.get_logger().info("ObjectAvoidance created successfully!")
 
     def preprocess_image(self, img:Image):
         pi_cam_img = cv2.cvtColor(self.cv_bridge.imgmsg_to_cv2(img), cv2.COLOR_BGR2GRAY)
@@ -29,7 +31,7 @@ class ObjectAvoidance(Node):
 
         lines = self.detect_lines(canny_img=canny_img)
 
-    def detect_lines(self, canny_img:Image):
+    def detect_lines(self, canny_img):
         min_line_length = 27
         max_line_gap = 2
         rho = 2
@@ -55,25 +57,30 @@ class ObjectAvoidance(Node):
         return angles#
     
     def color_mask_img(self, img:Image):
+        save_img_path = "/home/ubuntu/ros2_ws/images/modified/"
+
         img = self.cv_bridge.imgmsg_to_cv2(img)
         hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         lower_limit, upper_limit = get_limits([0,0,255])
         self.get_logger().info(lower_limit, upper_limit)
         red_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        cv2.imwrite(save_img_path+"red_img"+str(self.counter)+".jpg", red_img)
+        self.counter = self.counter+1
 
         lower_limit, upper_limit = get_limits([255,0,0])
         self.get_logger().info(lower_limit, upper_limit)
         blue_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        cv2.imwrite(save_img_path+"blue_img"+str(self.counter)+".jpg", blue_img)
+        self.counter = self.counter+1
 
         lower_limit, upper_limit = get_limits([0,255,255])
         self.get_logger().info(lower_limit, upper_limit)
         yellow_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        cv2.imwrite(save_img_path+"yellow_img"+str(self.counter)+".jpg", yellow_img)
+        self.counter = self.counter+1
 
-        
-
-
-
+        return red_img, yellow_img, blue_img
 
 
 def main(args=None):

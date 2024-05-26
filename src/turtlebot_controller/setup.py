@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "turtlebot_controller = turtlebot_controller.object_avoidance:main"
+            "turtlebot_controller = turtlebot_controller.object_avoidance:main",
+            "image_publisher = turtlebot_controller.image_publisher:main",
+            "image_subscriber = turtlebot_controller.image_subscriber:main"
         ],
     },
 )
