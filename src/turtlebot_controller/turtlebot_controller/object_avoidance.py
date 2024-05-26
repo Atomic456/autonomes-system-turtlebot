@@ -7,6 +7,7 @@ import math
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
+from color_conversion import get_limits
 
 
 
@@ -14,9 +15,9 @@ class ObjectAvoidance(Node):
 
     def __init__(self):
         super().__init__("objavo_node")
-        self.get_logger().info("Contructor run successfully!")
         self.create_subscription(Image, "/image_raw", self.preprocess_image, 10)
         self.cv_bridge = CvBridge()
+        self.get_logger().info("Contructor run successfully!")
 
     def preprocess_image(self, img:Image):
         pi_cam_img = cv2.cvtColor(self.cv_bridge.imgmsg_to_cv2(img), cv2.COLOR_BGR2GRAY)
@@ -51,7 +52,25 @@ class ObjectAvoidance(Node):
             approach_angle =  np.arccos(((x1)*(x2))+((y1)*(y2))/(math.sqrt((x1**2)+(y1**2)))*(math.sqrt((x2**2)+(y2**2))))
             angles.append(approach_angle)
         
-        return angles
+        return angles#
+    
+    def color_mask_img(self, img:Image):
+        img = self.cv_bridge.imgmsg_to_cv2(img)
+        hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+        lower_limit, upper_limit = get_limits([0,0,255])
+        self.get_logger().info(lower_limit, upper_limit)
+        red_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+
+        lower_limit, upper_limit = get_limits([255,0,0])
+        self.get_logger().info(lower_limit, upper_limit)
+        blue_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+
+        lower_limit, upper_limit = get_limits([0,255,255])
+        self.get_logger().info(lower_limit, upper_limit)
+        yellow_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+
+        
 
 
 
