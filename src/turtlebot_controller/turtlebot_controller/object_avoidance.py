@@ -57,26 +57,26 @@ class ObjectAvoidance(Node):
     
     def color_mask_img(self, img:Image):
         save_img_path = "/home/ubuntu/ros2_ws/images/modified/"
+        self.get_logger().info("Convert recived image: " + str(self.counter))
 
         img = self.cv_bridge.imgmsg_to_cv2(img)
         hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-        lower_limit, upper_limit = self.get_limits(color=[0, 0, 255])
-        red_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        #lower_limit, upper_limit = self.get_limits(color=[0, 0, 255])
+        #red_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        red_img = cv2.inRange(hsv_img, np.array([335,100,100]), np.array([40,100,100]))
         cv2.imwrite(save_img_path+"red_img"+str(self.counter)+".jpg", red_img)
-        self.counter = self.counter+1
 
-        lower_limit, upper_limit = self.get_limits(color=[255, 0, 0])
-        blue_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        #lower_limit, upper_limit = self.get_limits(color=[255, 0, 0])
+        #blue_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        blue_img = cv2.inRange(hsv_img, np.array([190,100,100]), np.array([270,100,100]))
         cv2.imwrite(save_img_path+"blue_img"+str(self.counter)+".jpg", blue_img)
-        self.counter = self.counter+1
 
-        lower_limit, upper_limit = self.get_limits(color=[0, 255, 255])
-        yellow_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        #lower_limit, upper_limit = self.get_limits(color=[0, 255, 255])
+        #yellow_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
+        yellow_img = cv2.inRange(hsv_img, np.array([45,100,100]), np.array([75,100,100]))
         cv2.imwrite(save_img_path+"yellow_img"+str(self.counter)+".jpg", yellow_img)
         self.counter = self.counter+1
-
-        return red_img, yellow_img, blue_img
     
     def get_limits(self, color):
         c = np.uint8([[color]])  # BGR values
@@ -89,7 +89,7 @@ class ObjectAvoidance(Node):
             lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
             upperLimit = np.array([180, 255, 255], dtype=np.uint8)
         elif hue <= 15:  # Lower limit for divided red hue
-            lowerLimit = np.array([0, 100, 100], dtype=np.uint8)
+            lowerLimit = np.array([0, 80, 80], dtype=np.uint8)
             upperLimit = np.array([hue + 10, 255, 255], dtype=np.uint8)
         else:
             lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
