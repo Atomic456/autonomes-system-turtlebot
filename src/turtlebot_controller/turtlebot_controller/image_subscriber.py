@@ -15,8 +15,10 @@ class ImageSubscriber(Node):
 
     def display_img(self, img:Image):
         cv2_img = self.cv_bridge.imgmsg_to_cv2(img)
+        cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
         self.get_logger().info("imgshow...")
         cv2.imshow("Camera Image", cv2_img)
+        cv2.waitKey(1)
 
     
 
