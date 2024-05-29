@@ -65,19 +65,16 @@ class ObjectAvoidance(Node):
     
     def mask_image(self, obstacel_img):
         img_hight, img_width = obstacel_img.shape
-        mask_left = np.array([[[(0,0),(0,360),(213,360),(213,0)]]])
-        mask_middle = np.array([[[(213,0),(213,360),(427,360),(427,0)]]])
-        mask_right = np.array([[[(427,0),(427,360),(640,360),(640,0)]]])
+        mask_left = np.array([[[(0,img_hight),(0,0),(213,0),(213,img_hight)]]])
+        mask_middle = np.array([[[(213,img_hight),(213,0),(427,0),(427,img_hight)]]])
+        mask_right = np.array([[[(427,img_hight),(427,0),(img_width,0),(img_width,img_hight)]]])
 
-        #base_img = np.zeros_like(obstacel_img)
-        base_img = np.zeros(obstacel_img.shape[:2], dtype="uint8")
-        img_mask_right = cv2.rectangle(base_img, (0,0), (213,360), 255, -1) 
+        base_img = np.zeros_like(obstacel_img)
+        img_mask_right = cv2.fillPoly(base_img, mask_right, 255)
         cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        #img_mask_middle = cv2.fillPoly(base_img, mask_middle, 255)
-        img_mask_middle = cv2.rectangle(base_img, (213,0), (427,360), 255, -1) 
+        img_mask_middle = cv2.fillPoly(base_img, mask_middle, 255)
         cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        #img_mask_left = cv2.fillPoly(base_img, mask_left, 255)
-        img_mask_left = cv2.rectangle(base_img, (427,0), (640,360), 255, -1) 
+        img_mask_left = cv2.fillPoly(base_img, mask_left, 255)
         cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         img_mask_right = cv2.bitwise_and(obstacel_img, img_mask_right)
