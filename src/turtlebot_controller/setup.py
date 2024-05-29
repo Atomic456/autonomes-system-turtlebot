@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             "turtlebot_controller = turtlebot_controller.object_avoidance:main",
+            "object_avoidance = turtlebot_controller.object_avoidance_v2:main",
             "image_publisher = turtlebot_controller.image_publisher:main",
             "image_subscriber = turtlebot_controller.image_subscriber:main"
         ],
