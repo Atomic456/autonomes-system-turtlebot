@@ -16,11 +16,11 @@ class ImagePublisher(Node):
         self.get_logger().info("ImagePublisher created successfully!")
 
     def publish_image(self):
-        self.get_logger().info("/home/ubuntu/ros2_ws/images/"+"IMG_027"+str(self.counter+2)+".jpg")
-        img = cv2.imread(cv2.samples.findFile("/home/ubuntu/ros2_ws/images/"+"IMG_027"+str(self.counter+2)+".jpg"))
+        self.get_logger().info("/home/ubuntu/ros2_ws/images/"+"IMG_"+str(self.counter+1)+".jpg")
+        img = cv2.imread(cv2.samples.findFile("/home/ubuntu/ros2_ws/images/"+"IMG_"+str(self.counter+1)+".jpg"))
         cv2.imshow("Display window", img)
         img_msg = self.cv_bridge.cv2_to_imgmsg(img)
-        self.counter = (self.counter + 1)%5
+        self.counter = (self.counter + 1)%14
         self.img_pub.publish(img_msg)
 
     

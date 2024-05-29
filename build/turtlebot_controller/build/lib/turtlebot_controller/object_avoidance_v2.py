@@ -21,17 +21,13 @@ class ObjectAvoidance(Node):
     def local_path_planning(self, img:Image):
         self.get_logger().info("Starting path planning...")
         pi_cam_img = self.cv_bridge.imgmsg_to_cv2(img)
-        combined_obstacel_color_mask, red_color_mask = self.image_pre_processing(pi_cam_img)
-        hue_left, hue_middle, hue_right = self.mask_image(combined_obstacel_color_mask)
-        self.get_logger().info("hue_left: " + str(hue_left) +" | hue_middle: " + str(hue_middle) + " | hue_left: " + str(hue_right))
-        steer = self.calculate_movement(hue_left=hue_left, hue_middle=hue_middle, hue_right=hue_right)
-        self.get_logger().info("Steering move: " + steer)
+        self.image_pre_processing(pi_cam_img)
 
     def image_pre_processing(self, img):
         self.get_logger().info("Pre processing image...")
         #bluring
         blured_img = cv2.GaussianBlur(img, (5,5), 0)
-        #cv2.imwrite(self.save_img_path+"blured"+str(self.counter)+".jpg", blured_img)
+        cv2.imwrite(self.save_img_path+"blured"+str(self.counter)+".jpg", blured_img)
         hsv_image = cv2.cvtColor(blured_img, cv2.COLOR_BGR2HSV)
 
         #color masking
@@ -41,11 +37,11 @@ class ObjectAvoidance(Node):
         blue = [255,0,0]
         lowerLimit, upperLimit = self.get_limits(blue)
         blue_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
-        #cv2.imwrite(self.save_img_path+"blue"+str(self.counter)+".jpg", blue_color_mask)
+        cv2.imwrite(self.save_img_path+"blue"+str(self.counter)+".jpg", blue_color_mask)
         yellow = [0,255,255]
         lowerLimit, upperLimit = self.get_limits(yellow)
         yellow_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
-        #cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
+        cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
         white = [255,255,255]
         lowerLimit, upperLimit = self.get_limits(white)
         white_color_mask = cv2.inRange(hsv_image, lowerLimit,  upperLimit)
@@ -65,45 +61,24 @@ class ObjectAvoidance(Node):
     
     def mask_image(self, obstacel_img):
         img_hight, img_width = obstacel_img.shape
-        mask_left = np.array([[[(0,0),(0,360),(213,360),(213,0)]]])
-        mask_middle = np.array([[[(213,0),(213,360),(427,360),(427,0)]]])
-        mask_right = np.array([[[(427,0),(427,360),(640,360),(640,0)]]])
+        mask_left = np.array([[[(0,0),(0,480),(213,480),(213,0)]]])
+        mask_middle = np.array([[[(213,0),(213,480),(427,480),(427,0)]]])
+        mask_right = np.array([[[(427,0),(427,480),(640,480),(640,0)]]])
 
         base_img = np.zeros_like(obstacel_img)
         img_mask_right = cv2.fillPoly(base_img, mask_right, 255)
-        cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
         img_mask_middle = cv2.fillPoly(base_img, mask_middle, 255)
-        cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
         img_mask_left = cv2.fillPoly(base_img, mask_left, 255)
-        cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         img_mask_right = cv2.bitwise_and(obstacel_img, img_mask_right)
-        #cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
         img_mask_middle = cv2.bitwise_and(obstacel_img, img_mask_middle)
-        #cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
         img_mask_left = cv2.bitwise_and(obstacel_img, img_mask_left)
-        #cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         hue_right = np.mean(img_mask_right)
         hue_middle = np.mean(img_mask_middle)
         hue_left = np.mean(img_mask_left)
 
         return hue_left, hue_middle, hue_right
-    
-    def calculate_movement(self, hue_left, hue_middle, hue_right):
-        least_obstacles = min([hue_left, hue_middle, hue_right])
-
-        if least_obstacles == hue_left:
-            steer = "steer left"
-        elif least_obstacles == hue_middle:
-            steer = "reset steering" 
-        else:
-            steer = "steer right"
-        
-        return steer
-
-
-
 
 
 
