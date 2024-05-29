@@ -68,13 +68,10 @@ class ObjectAvoidance(Node):
         # Calculate the width of each sliver
         width = obstacel_img.shape[1] // 3
 
-        #base_img = np.zeros_like(obstacel_img)
-        #img_mask_right = cv2.fillPoly(base_img, mask_right, 255)
-        # Extract the three slivers
         img_mask_right = obstacel_img[:, :width]
         img_mask_middle = obstacel_img[:, width:2*width]
         img_mask_left = obstacel_img[:, 2*width:]
-        
+
         ''' Debug output '''
         cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
         cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
@@ -97,6 +94,12 @@ class ObjectAvoidance(Node):
             steer = "steer right"
         
         return steer
+
+    def swich_behavior(self, obstacle_img, target_img):
+        behavior = ""
+
+        img_height, img_width, img_channels = obstacle_img.shape
+        img_max_fill = img_height * img_width * 255
 
 
 
