@@ -36,12 +36,15 @@ class ObjectAvoidance(Node):
         blue = [255,0,0]
         lowerLimit, upperLimit = self.get_limits(blue)
         blue_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        cv2.imwrite(self.save_img_path+"blue"+str(self.counter)+".jpg", blue_color_mask)
         yellow = [0,255,255]
         lowerLimit, upperLimit = self.get_limits(yellow)
         yellow_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
         white = [255,255,255]
         lowerLimit, upperLimit = self.get_limits(white)
         white_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
 
         #recombine image masks
         combined_obstacel_color_mask = cv2.bitwise_or(blue_color_mask,yellow_color_mask)
