@@ -14,6 +14,8 @@
   <depend>numpy</depend>
   <depend>math</depend>
   <depend>color_conversion</depend>
+  <depend>geometry_msgs</depend>
+  
   
   
 
