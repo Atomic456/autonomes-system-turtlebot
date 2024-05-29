@@ -27,6 +27,7 @@ class ObjectAvoidance(Node):
         self.get_logger().info("Pre processing image...")
         #bluring
         blured_img = cv2.GaussianBlur(img, (5,5), 0)
+        cv2.imwrite(self.save_img_path+"blured"+str(self.counter)+".jpg", blured_img)
 
         #color masking
         red = [0,0,255]
@@ -43,8 +44,8 @@ class ObjectAvoidance(Node):
         white_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
 
         #recombine image masks
-        combined_obstacel_color_mask = cv2.bitwise_and(blue_color_mask,yellow_color_mask)
-        combined_obstacel_color_mask = cv2.bitwise_and(combined_obstacel_color_mask,white_color_mask)
+        combined_obstacel_color_mask = cv2.bitwise_or(blue_color_mask,yellow_color_mask)
+        combined_obstacel_color_mask = cv2.bitwise_or(combined_obstacel_color_mask,white_color_mask)
 
         """ Debug output """
         self.get_logger().info("Saving solution for Image no." + str(self.counter) + " add path " + self.save_img_path+"obstacle"+str(self.counter)+".jpg")
