@@ -47,6 +47,7 @@ class ObjectAvoidance(Node):
         combined_obstacel_color_mask = cv2.bitwise_and(combined_obstacel_color_mask,white_color_mask)
 
         """ Debug output """
+        self.get_logger().info("Saving solution for Image no." + str(self.counter) + " add path " + self.save_img_path+"obstacle"+str(self.counter)+".jpg")
         cv2.imwrite(self.save_img_path+"obstacle"+str(self.counter)+".jpg", combined_obstacel_color_mask)
         cv2.imwrite(self.save_img_path+"red"+str(self.counter)+".jpg", red_color_mask)
         self.counter = self.counter + 1
