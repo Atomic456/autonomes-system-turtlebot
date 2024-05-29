@@ -28,22 +28,23 @@ class ObjectAvoidance(Node):
         #bluring
         blured_img = cv2.GaussianBlur(img, (5,5), 0)
         cv2.imwrite(self.save_img_path+"blured"+str(self.counter)+".jpg", blured_img)
+        hsv_image = cv2.cvtColor(blured_img, cv2.COLOR_BGR2HSV)
 
         #color masking
         red = [0,0,255]
         lowerLimit, upperLimit = self.get_limits(red)
-        red_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        red_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
         blue = [255,0,0]
         lowerLimit, upperLimit = self.get_limits(blue)
-        blue_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        blue_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
         cv2.imwrite(self.save_img_path+"blue"+str(self.counter)+".jpg", blue_color_mask)
         yellow = [0,255,255]
         lowerLimit, upperLimit = self.get_limits(yellow)
-        yellow_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        yellow_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
         cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
         white = [255,255,255]
         lowerLimit, upperLimit = self.get_limits(white)
-        white_color_mask = cv2.inRange(blured_img, lowerLimit, upperLimit)
+        white_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
         cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
 
         #recombine image masks
