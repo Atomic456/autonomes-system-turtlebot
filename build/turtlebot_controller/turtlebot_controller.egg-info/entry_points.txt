@@ -1,5 +1,6 @@
 [console_scripts]
 image_publisher = turtlebot_controller.image_publisher:main
 image_subscriber = turtlebot_controller.image_subscriber:main
+object_avoidance = turtlebot_controller.object_avoidance_v2:main
 turtlebot_controller = turtlebot_controller.object_avoidance:main
 

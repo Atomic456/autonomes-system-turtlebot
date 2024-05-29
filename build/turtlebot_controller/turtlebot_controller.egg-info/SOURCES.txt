@@ -14,6 +14,7 @@ turtlebot_controller/color_conversion.py
 turtlebot_controller/image_publisher.py
 turtlebot_controller/image_subscriber.py
 turtlebot_controller/object_avoidance.py
+turtlebot_controller/object_avoidance_v2.py
 turtlebot_controller.egg-info/PKG-INFO
 turtlebot_controller.egg-info/SOURCES.txt
 turtlebot_controller.egg-info/dependency_links.txt
