@@ -44,7 +44,7 @@ class ObjectAvoidance(Node):
         cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
         white = [255,255,255]
         lowerLimit, upperLimit = self.get_limits(white)
-        white_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
+        white_color_mask = cv2.inRange(hsv_image, np.array([0,0,0]),  np.array([0,0,255]))
         cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
 
         #recombine image masks
