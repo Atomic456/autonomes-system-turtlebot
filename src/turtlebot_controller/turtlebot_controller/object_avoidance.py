@@ -64,7 +64,7 @@ class ObjectAvoidance(Node):
 
         #lower_limit, upper_limit = self.get_limits(color=[0, 0, 255])
         #red_img = cv2.inRange(hsv_img, lower_limit, upper_limit)
-        red_img = cv2.inRange(hsv_img, np.array([335,100,100]), np.array([40,100,100]))
+        red_img = cv2.bitwise_or(cv2.inRange(hsv_img, np.array([0,100,100]), np.array([40,100,100])), cv2.inRange(hsv_img, np.array([320,100,100]), np.array([345,100,100])), mask=None)
         cv2.imwrite(save_img_path+"red_img"+str(self.counter)+".jpg", red_img)
 
         #lower_limit, upper_limit = self.get_limits(color=[255, 0, 0])
