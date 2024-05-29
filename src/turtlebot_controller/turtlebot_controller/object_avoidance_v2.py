@@ -64,24 +64,27 @@ class ObjectAvoidance(Node):
         return combined_obstacel_color_mask, red_color_mask
     
     def mask_image(self, obstacel_img):
-        img_hight, img_width = obstacel_img.shape
-        mask_left = np.array([[[(0,img_hight),(0,0),(213,0),(213,img_hight)]]])
-        mask_middle = np.array([[[(213,img_hight),(213,0),(427,0),(427,img_hight)]]])
-        mask_right = np.array([[[(427,img_hight),(427,0),(img_width,0),(img_width,img_hight)]]])
 
-        base_img = np.zeros_like(obstacel_img)
-        img_mask_right = cv2.fillPoly(base_img, mask_right, 255)
+        # Calculate the width of each sliver
+        width = obstacel_img.shape[1] // 3
+
+        #base_img = np.zeros_like(obstacel_img)
+        #img_mask_right = cv2.fillPoly(base_img, mask_right, 255)
+        # Extract the three slivers
+        img_mask_right = obstacel_img[:, :width]
+        img_mask_middle = obstacel_img[:, width:2*width]
+        img_mask_left = obstacel_img[:, 2*width:]
         cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        img_mask_middle = cv2.fillPoly(base_img, mask_middle, 255)
+        #img_mask_middle = cv2.fillPoly(base_img, mask_middle, 255)
         cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        img_mask_left = cv2.fillPoly(base_img, mask_left, 255)
+        #img_mask_left = cv2.fillPoly(base_img, mask_left, 255)
         cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
-        img_mask_right = cv2.bitwise_and(obstacel_img, img_mask_right)
+        #img_mask_right = cv2.bitwise_and(obstacel_img, img_mask_right)
         #cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        img_mask_middle = cv2.bitwise_and(obstacel_img, img_mask_middle)
+        #img_mask_middle = cv2.bitwise_and(obstacel_img, img_mask_middle)
         #cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        img_mask_left = cv2.bitwise_and(obstacel_img, img_mask_left)
+        #img_mask_left = cv2.bitwise_and(obstacel_img, img_mask_left)
         #cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         hue_right = np.mean(img_mask_right)
