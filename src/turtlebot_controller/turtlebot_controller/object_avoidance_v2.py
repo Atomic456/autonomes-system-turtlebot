@@ -74,18 +74,11 @@ class ObjectAvoidance(Node):
         img_mask_right = obstacel_img[:, :width]
         img_mask_middle = obstacel_img[:, width:2*width]
         img_mask_left = obstacel_img[:, 2*width:]
+        
+        ''' Debug output '''
         cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        #img_mask_middle = cv2.fillPoly(base_img, mask_middle, 255)
         cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        #img_mask_left = cv2.fillPoly(base_img, mask_left, 255)
         cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
-
-        #img_mask_right = cv2.bitwise_and(obstacel_img, img_mask_right)
-        #cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        #img_mask_middle = cv2.bitwise_and(obstacel_img, img_mask_middle)
-        #cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        #img_mask_left = cv2.bitwise_and(obstacel_img, img_mask_left)
-        #cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         hue_right = np.mean(img_mask_right)
         hue_middle = np.mean(img_mask_middle)
