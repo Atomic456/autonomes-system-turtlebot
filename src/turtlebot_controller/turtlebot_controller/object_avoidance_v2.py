@@ -2,7 +2,6 @@
 import cv2
 import rclpy
 import numpy as np
-import math
 
 from rclpy.node import Node
 from sensor_msgs.msg import Image
@@ -56,6 +55,7 @@ class ObjectAvoidance(Node):
         red = [0,0,255]
         lowerLimit, upperLimit = self.get_limits(red)
         red_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
+        
         blue = [255,0,0]
         lowerLimit, upperLimit = self.get_limits(blue)
         blue_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
@@ -67,17 +67,17 @@ class ObjectAvoidance(Node):
         white = [255,255,255]
         lowerLimit, upperLimit = self.get_limits(white)
         white_color_mask = cv2.inRange(hsv_image, lowerLimit,  upperLimit)
-        cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
+        #cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
 
         #recombine image masks
         combined_obstacel_color_mask = cv2.bitwise_or(blue_color_mask,yellow_color_mask)
         combined_obstacel_color_mask = cv2.bitwise_or(combined_obstacel_color_mask,white_color_mask)
 
         """ Debug output """
-        self.get_logger().info("Saving solution for Image no." + str(self.counter) + " add path " + self.save_img_path+"obstacle"+str(self.counter)+".jpg")
-        cv2.imwrite(self.save_img_path+"obstacle"+str(self.counter)+".jpg", combined_obstacel_color_mask)
-        cv2.imwrite(self.save_img_path+"red"+str(self.counter)+".jpg", red_color_mask)
-        self.counter = self.counter + 1
+        #self.get_logger().info("Saving solution for Image no." + str(self.counter) + " add path " + self.save_img_path+"obstacle"+str(self.counter)+".jpg")
+        #cv2.imwrite(self.save_img_path+"obstacle"+str(self.counter)+".jpg", combined_obstacel_color_mask)
+        #cv2.imwrite(self.save_img_path+"red"+str(self.counter)+".jpg", red_color_mask)
+        #self.counter = self.counter + 1
 
         return combined_obstacel_color_mask, red_color_mask
     
@@ -91,9 +91,9 @@ class ObjectAvoidance(Node):
         img_mask_left = obstacel_img[:, 2*width:]
 
         ''' Debug output '''
-        cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
+        #cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
+        #cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
+        #cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         # Calculate intensity of obstacles
         hue_right = np.mean(img_mask_right)
@@ -103,17 +103,21 @@ class ObjectAvoidance(Node):
         return hue_left, hue_middle, hue_right
     
     def calculate_movement(self, hue_left, hue_middle, hue_right):
+        twist_msg = Twist()
         least_obstacles = min([hue_left, hue_middle, hue_right])
 
         if least_obstacles == hue_left:
-            steer = "steer left"
+            twist_msg.linear.x = 0.1
+            twist_msg.angular.z = least_obstacles / 255 * (1.5)
         elif least_obstacles == hue_middle:
-            steer = "reset steering" 
+            twist_msg.linear.x = 0.1
+            twist_msg.angular.z = 0.0
         else:
-            steer = "steer right"
+            twist_msg.linear.x = 0.1
+            twist_msg.angular.z = least_obstacles / 255 * (-1.5)
+
+        self.movement_pub.publish(twist_msg)
         
-        self.get_logger().info("Steering move: " + steer)
-        return steer
 
     def swich_behavior(self, obstacle_img, target_img):
         img_max_fill = 255
