@@ -22,14 +22,18 @@ class ObjectAvoidance(Node):
         super().__init__("oav2_node")
         self.create_subscription(Image, "/image_raw", self.local_path_planning, 10)
         self.movement_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.img_l_pub = self.create_publisher(Image, '/image_left', 10)
+        self.img_m_pub = self.create_publisher(Image, '/image_middle', 10)
+        self.img_r_pub = self.create_publisher(Image, '/image_right', 10)
         self.cv_bridge = CvBridge()
         self.save_img_path = "/home/ubuntu/ros2_ws/images/modified/"
         self.counter = 0
+        self.scale = 2
         self.behavior = Behavior.AVOID_OBSTACLES
         self.get_logger().info("ObjectAvoidance created successfully!")
 
     def local_path_planning(self, img:Image):
-        self.get_logger().info("Starting path planning...")
+        #self.get_logger().info("Starting path planning...")
         pi_cam_img = self.cv_bridge.imgmsg_to_cv2(img)
         obstacle_img, target_img = self.image_pre_processing(pi_cam_img)
         self.swich_behavior(obstacle_img,target_img)
@@ -45,7 +49,7 @@ class ObjectAvoidance(Node):
             self.ninety_degree_turn()
 
     def image_pre_processing(self, img):
-        self.get_logger().info("Pre processing image...")
+        #self.get_logger().info("Pre processing image...")
         #bluring
         blured_img = cv2.GaussianBlur(img, (5,5), 0)
         #cv2.imwrite(self.save_img_path+"blured"+str(self.counter)+".jpg", blured_img)
@@ -62,11 +66,11 @@ class ObjectAvoidance(Node):
         #cv2.imwrite(self.save_img_path+"blue"+str(self.counter)+".jpg", blue_color_mask)
         yellow = [0,255,255]
         lowerLimit, upperLimit = self.get_limits(yellow)
-        yellow_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
+        yellow_color_mask = cv2.inRange(hsv_image, np.array([22, 100, 100]), np.array([38, 255, 255]))
         #cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
         white = [255,255,255]
         lowerLimit, upperLimit = self.get_limits(white)
-        white_color_mask = cv2.inRange(hsv_image, lowerLimit,  upperLimit)
+        white_color_mask = cv2.inRange(hsv_image, np.array([0, 164, 0]),  np.array([179, 255, 255]))
         #cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
 
         #recombine image masks
@@ -87,8 +91,11 @@ class ObjectAvoidance(Node):
 
         # Seperate image into three segments
         img_mask_right = obstacel_img[:, :width]
+        self.img_r_pub.publish(self.cv_bridge.cv2_to_imgmsg(img_mask_right))
         img_mask_middle = obstacel_img[:, width:2*width]
+        self.img_m_pub.publish(self.cv_bridge.cv2_to_imgmsg(img_mask_middle))
         img_mask_left = obstacel_img[:, 2*width:]
+        self.img_l_pub.publish(self.cv_bridge.cv2_to_imgmsg(img_mask_left))
 
         ''' Debug output '''
         #cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
@@ -107,14 +114,17 @@ class ObjectAvoidance(Node):
         least_obstacles = min([hue_left, hue_middle, hue_right])
 
         if least_obstacles == hue_left:
+            self.get_logger().info("Hue left: " + str(least_obstacles))
             twist_msg.linear.x = 0.1
-            twist_msg.angular.z = least_obstacles / 255 * (1.5)
+            twist_msg.angular.z = (least_obstacles / 255) * (1.5) * self.scale
         elif least_obstacles == hue_middle:
+            self.get_logger().info("Hue middle: " + str(least_obstacles))
             twist_msg.linear.x = 0.1
             twist_msg.angular.z = 0.0
         else:
+            self.get_logger().info("Hue right: " + str(least_obstacles))
             twist_msg.linear.x = 0.1
-            twist_msg.angular.z = least_obstacles / 255 * (-1.5)
+            twist_msg.angular.z = (least_obstacles / 255) * (-1.5) * self.scale
 
         self.movement_pub.publish(twist_msg)
         
@@ -124,15 +134,19 @@ class ObjectAvoidance(Node):
         target_img_intensity = np.mean(target_img)
         obstacle_img_intensity = np.mean(obstacle_img)
 
-        if target_img_intensity > img_max_fill*(1/9):
+        if target_img_intensity > img_max_fill*(1/18):
+            self.get_logger().info("Change Behavior to Target Lock!")
             self.behavior = Behavior.TARGET_LOCK
-        elif obstacle_img_intensity > img_max_fill*(4/5):
+        elif obstacle_img_intensity > img_max_fill*(3/2):
+            self.get_logger().info("Change Behavior to Reorient!")
             self.behavior = Behavior.REORIENT
         else:
+            self.get_logger().info("Change Behavior to Obstacle Avoidance!")
             self.behavior = Behavior.AVOID_OBSTACLES
 
     def ninety_degree_turn(self):
         twist_msg = Twist()
+        twist_msg.linear.x = 0.0
         twist_msg.angular.z = 1.57  # 90 degrees in radians
         self.movement_pub.publish(twist_msg)
         
