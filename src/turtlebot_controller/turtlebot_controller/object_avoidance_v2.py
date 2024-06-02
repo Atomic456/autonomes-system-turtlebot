@@ -6,7 +6,8 @@ import numpy as np
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from std_msgs.msg import Int8
-from std_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseWithCovariance 
 from cv_bridge import CvBridge
 from geometry_msgs.msg import Twist
 
@@ -22,7 +23,7 @@ class ObjectAvoidance(Node):
         self.img_m_pub = self.create_publisher(Image, '/image_middle', 10)
         self.img_r_pub = self.create_publisher(Image, '/image_right', 10)
         self.behavior_pub = self.create_publisher(Int8, '/behavior', 10)
-        self.goal_pos_pub = self.create_publisher(PoseStamped, '/goal_pos', 10)
+        self.goal_pos_pub = self.create_publisher(PoseStamped, '/goal_pose', 10)
         self.create_subscription(Int8, '/behavior', self.update_behavior, 10)
         self.create_subscription(Twist, '/cmd_vel', self.validate_steering, 10)
         self.create_subscription(PoseStamped, '/pose', self.update_pos, 10)
