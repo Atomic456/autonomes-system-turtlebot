@@ -6,50 +6,57 @@ import numpy as np
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from std_msgs.msg import Int8
+from std_msgs.msg import PoseStamped
 from cv_bridge import CvBridge
 from geometry_msgs.msg import Twist
-from map_exploration import Behavior
 
 
 class ObjectAvoidance(Node):
 
     def __init__(self):
         super().__init__("oav2_node")
-        self.create_subscription(Image, "/image_raw", self.local_path_planning, 10)
+        self.ack_pos = None
+        self.behavior = 0
         self.movement_pub = self.create_publisher(Twist, '/valid_cmd_vel', 10)
         self.img_l_pub = self.create_publisher(Image, '/image_left', 10)
         self.img_m_pub = self.create_publisher(Image, '/image_middle', 10)
         self.img_r_pub = self.create_publisher(Image, '/image_right', 10)
         self.behavior_pub = self.create_publisher(Int8, '/behavior', 10)
+        self.goal_pos_pub = self.create_publisher(PoseStamped, '/goal_pos', 10)
         self.create_subscription(Int8, '/behavior', self.update_behavior, 10)
         self.create_subscription(Twist, '/cmd_vel', self.validate_steering, 10)
+        self.create_subscription(PoseStamped, '/pose', self.update_pos, 10)
+        self.create_subscription(Image, "/image_raw", self.local_path_planning, 10)
         self.cv_bridge = CvBridge()
-        self.scale = 2
+        self.scale = 4
         self.get_logger().info("ObjectAvoidance created successfully!")
 
     def validate_steering(self, steering:Twist):
-        if self.behavior is Behavior.MAP_EXPLORATION:
+        if self.behavior == 2:
             self.movement_pub.publish(steering)
+        if self.behavior == 4:
+            self.goal_pos_pub.publish(self.ack_pos)
 
     
     def update_behavior(self, behavior: Int8):
         self.behavior = behavior
     
+
+    def update_pos(self, pos:PoseStamped):
+        self.ack_pos = pos
+
     def local_path_planning(self, img:Image):
         #self.get_logger().info("Starting path planning...")
         pi_cam_img = self.cv_bridge.imgmsg_to_cv2(img)
         obstacle_img, target_img = self.image_pre_processing(pi_cam_img)
         self.swich_behavior(obstacle_img,target_img)
 
-        if self.behavior is Behavior.AVOID_OBSTACLES:
+        if self.behavior == 3:
             hue_left, hue_middle, hue_right = self.mask_image(obstacle_img)
             self.calculate_movement(hue_left=hue_left, hue_middle=hue_middle, hue_right=hue_right)
-        elif self.behavior is Behavior.TARGET_LOCK:
+        elif self.behavior == 4:
             hue_left, hue_middle, hue_right = self.mask_image(target_img)
             self.calculate_movement(hue_left=hue_left, hue_middle=hue_middle, hue_right=hue_right)
-        else:
-            #turn 90° and reassess
-            self.ninety_degree_turn()
 
     def image_pre_processing(self, img):
         #self.get_logger().info("Pre processing image...")
@@ -112,15 +119,13 @@ class ObjectAvoidance(Node):
         o_hue_left, o_hue_center, o_hue_right = self.mask_image(obstacle_img)
 
         if o_hue_center > img_max_fill*(1/6):
-            self.behavior_pub.publish(Int8(Behavior.TARGET_LOCK))
-        elif (t_hue_left+t_hue_center+t_hue_right)  > img_max_fill*(1/20):
-            self.behavior_pub.publish(Int8(Behavior.REORIENT))
-
-    def ninety_degree_turn(self):
-        twist_msg = Twist()
-        twist_msg.linear.x = 0.0
-        twist_msg.angular.z = 1.57  # 90 degrees in radians
-        self.movement_pub.publish(twist_msg)
+            bhv_msg = Int8()
+            bhv_msg.data = 3
+            self.behavior_pub.publish(bhv_msg)
+        elif (t_hue_left+t_hue_center+t_hue_right) > img_max_fill*(1/20):
+            bhv_msg = Int8()
+            bhv_msg.data = 4
+            self.behavior_pub.publish(bhv_msg)
         
 
 

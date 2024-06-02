@@ -27,7 +27,7 @@ class MapExploration(Node):
         self.map = None
         self.create_subscription(OccupancyGrid, '/map', self.safe_map,10)
         self.location_initialization()
-        self.create_timer(10,self.calculate_goal_pos)
+        self.create_timer(20,self.calculate_goal_pos)
 
         
 
