@@ -1,0 +1,20 @@
+[2.331s] Invoking command in '/home/ubuntu/ros2_ws/build/turtlebot_controller': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ubuntu/ros2_ws/build/turtlebot_controller/build --no-deps symlink_data
+[2.753s] running develop
+[2.936s] running egg_info
+[2.937s] writing turtlebot_controller.egg-info/PKG-INFO
+[2.938s] writing dependency_links to turtlebot_controller.egg-info/dependency_links.txt
+[2.939s] writing entry points to turtlebot_controller.egg-info/entry_points.txt
+[2.939s] writing requirements to turtlebot_controller.egg-info/requires.txt
+[2.939s] writing top-level names to turtlebot_controller.egg-info/top_level.txt
+[2.942s] reading manifest file 'turtlebot_controller.egg-info/SOURCES.txt'
+[2.944s] writing manifest file 'turtlebot_controller.egg-info/SOURCES.txt'
+[2.947s] running build_ext
+[2.948s] Creating /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages/turtlebot-controller.egg-link (link to .)
+[2.950s] Installing image_publisher script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[2.952s] Installing image_subscriber script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[2.953s] Installing object_avoidance script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[2.953s] Installing turtlebot_controller script to /home/ubuntu/ros2_ws/install/turtlebot_controller/lib/turtlebot_controller
+[2.954s] 
+[2.955s] Installed /home/ubuntu/ros2_ws/build/turtlebot_controller
+[2.955s] running symlink_data
+[3.041s] Invoked command in '/home/ubuntu/ros2_ws/build/turtlebot_controller' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/build/turtlebot_controller/prefix_override:/home/ubuntu/ros2_ws/install/turtlebot_controller/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ubuntu/ros2_ws/build/turtlebot_controller/build --no-deps symlink_data

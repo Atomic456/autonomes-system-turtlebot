@@ -5,15 +5,10 @@ import numpy as np
 
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import Int8
 from cv_bridge import CvBridge
-from enum import Enum
 from geometry_msgs.msg import Twist
-
-
-class Behavior(Enum):
-    REORIENT = 1
-    AVOID_OBSTACLES = 2
-    TARGET_LOCK = 3
+from map_exploration import Behavior
 
 
 class ObjectAvoidance(Node):
@@ -21,17 +16,25 @@ class ObjectAvoidance(Node):
     def __init__(self):
         super().__init__("oav2_node")
         self.create_subscription(Image, "/image_raw", self.local_path_planning, 10)
-        self.movement_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.movement_pub = self.create_publisher(Twist, '/valid_cmd_vel', 10)
         self.img_l_pub = self.create_publisher(Image, '/image_left', 10)
         self.img_m_pub = self.create_publisher(Image, '/image_middle', 10)
         self.img_r_pub = self.create_publisher(Image, '/image_right', 10)
+        self.behavior_pub = self.create_publisher(Int8, '/behavior', 10)
+        self.create_subscription(Int8, '/behavior', self.update_behavior, 10)
+        self.create_subscription(Twist, '/cmd_vel', self.validate_steering, 10)
         self.cv_bridge = CvBridge()
-        self.save_img_path = "/home/ubuntu/ros2_ws/images/modified/"
-        self.counter = 0
         self.scale = 2
-        self.behavior = Behavior.AVOID_OBSTACLES
         self.get_logger().info("ObjectAvoidance created successfully!")
 
+    def validate_steering(self, steering:Twist):
+        if self.behavior is Behavior.MAP_EXPLORATION:
+            self.movement_pub.publish(steering)
+
+    
+    def update_behavior(self, behavior: Int8):
+        self.behavior = behavior
+    
     def local_path_planning(self, img:Image):
         #self.get_logger().info("Starting path planning...")
         pi_cam_img = self.cv_bridge.imgmsg_to_cv2(img)
@@ -59,31 +62,10 @@ class ObjectAvoidance(Node):
         red = [0,0,255]
         lowerLimit, upperLimit = self.get_limits(red)
         red_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
-        
-        blue = [255,0,0]
-        lowerLimit, upperLimit = self.get_limits(blue)
-        blue_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
-        #cv2.imwrite(self.save_img_path+"blue"+str(self.counter)+".jpg", blue_color_mask)
-        yellow = [0,255,255]
-        lowerLimit, upperLimit = self.get_limits(yellow)
-        yellow_color_mask = cv2.inRange(hsv_image, np.array([22, 100, 100]), np.array([38, 255, 255]))
-        #cv2.imwrite(self.save_img_path+"yellow"+str(self.counter)+".jpg", yellow_color_mask)
-        white = [255,255,255]
-        lowerLimit, upperLimit = self.get_limits(white)
-        white_color_mask = cv2.inRange(hsv_image, np.array([0, 164, 0]),  np.array([179, 255, 255]))
-        #cv2.imwrite(self.save_img_path+"white"+str(self.counter)+".jpg", white_color_mask)
 
-        #recombine image masks
-        combined_obstacel_color_mask = cv2.bitwise_or(blue_color_mask,yellow_color_mask)
-        combined_obstacel_color_mask = cv2.bitwise_or(combined_obstacel_color_mask,white_color_mask)
+        yellow_color_mask = cv2.inRange(hsv_image, np.array([40, 60, 32]), np.array([60, 100, 100]))
 
-        """ Debug output """
-        #self.get_logger().info("Saving solution for Image no." + str(self.counter) + " add path " + self.save_img_path+"obstacle"+str(self.counter)+".jpg")
-        #cv2.imwrite(self.save_img_path+"obstacle"+str(self.counter)+".jpg", combined_obstacel_color_mask)
-        #cv2.imwrite(self.save_img_path+"red"+str(self.counter)+".jpg", red_color_mask)
-        #self.counter = self.counter + 1
-
-        return combined_obstacel_color_mask, red_color_mask
+        return yellow_color_mask, red_color_mask
     
     def mask_image(self, obstacel_img):
         # Calculate the width of each sliver
@@ -96,11 +78,6 @@ class ObjectAvoidance(Node):
         self.img_m_pub.publish(self.cv_bridge.cv2_to_imgmsg(img_mask_middle))
         img_mask_left = obstacel_img[:, 2*width:]
         self.img_l_pub.publish(self.cv_bridge.cv2_to_imgmsg(img_mask_left))
-
-        ''' Debug output '''
-        #cv2.imwrite(self.save_img_path+"img_mask_right"+str(self.counter)+".jpg", img_mask_right)
-        #cv2.imwrite(self.save_img_path+"img_mask_middle"+str(self.counter)+".jpg", img_mask_middle)
-        #cv2.imwrite(self.save_img_path+"img_mask_left"+str(self.counter)+".jpg", img_mask_left)
 
         # Calculate intensity of obstacles
         hue_right = np.mean(img_mask_right)
@@ -131,18 +108,13 @@ class ObjectAvoidance(Node):
 
     def swich_behavior(self, obstacle_img, target_img):
         img_max_fill = 255
-        target_img_intensity = np.mean(target_img)
-        obstacle_img_intensity = np.mean(obstacle_img)
+        t_hue_left, t_hue_center, t_hue_right = self.mask_image(target_img)
+        o_hue_left, o_hue_center, o_hue_right = self.mask_image(obstacle_img)
 
-        if target_img_intensity > img_max_fill*(1/18):
-            self.get_logger().info("Change Behavior to Target Lock!")
-            self.behavior = Behavior.TARGET_LOCK
-        elif obstacle_img_intensity > img_max_fill*(3/2):
-            self.get_logger().info("Change Behavior to Reorient!")
-            self.behavior = Behavior.REORIENT
-        else:
-            self.get_logger().info("Change Behavior to Obstacle Avoidance!")
-            self.behavior = Behavior.AVOID_OBSTACLES
+        if o_hue_center > img_max_fill*(1/6):
+            self.behavior_pub.publish(Int8(Behavior.TARGET_LOCK))
+        elif (t_hue_left+t_hue_center+t_hue_right)  > img_max_fill*(1/20):
+            self.behavior_pub.publish(Int8(Behavior.REORIENT))
 
     def ninety_degree_turn(self):
         twist_msg = Twist()

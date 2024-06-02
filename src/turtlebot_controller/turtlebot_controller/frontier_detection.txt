@@ -1,0 +1,29 @@
+# Assuming you have received the occupancy grid map data
+def find_frontiers(map_data):
+    frontiers = []
+    for x in range(map_width):
+        for y in range(map_height):
+            if is_frontier_cell(x, y, map_data):
+                frontiers.append((x, y))
+    return frontiers
+
+def is_frontier_cell(x, y, map_data):
+    # Check if the cell is adjacent to both explored and unexplored cells
+    if is_unknown_cell(x, y, map_data):
+        for dx in [-1, 0, 1]:
+            for dy in [-1, 0, 1]:
+                if not is_unknown_cell(x + dx, y + dy, map_data):
+                    return True
+    return False
+
+def is_unknown_cell(x, y, map_data):
+    # Check if the cell is unexplored (unknown)
+    return map_data[x][y] == UNKNOWN_CELL_VALUE
+
+# Replace UNKNOWN_CELL_VALUE with the actual value representing unexplored cells
+# Adjust map_width and map_height based on your map dimensions
+
+# Example usage:
+map_data = get_map_data_from_topic()  # Implement this function to get the map data
+frontiers = find_frontiers(map_data)
+print("Frontier points:", frontiers)

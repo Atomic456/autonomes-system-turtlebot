@@ -13,6 +13,7 @@ turtlebot_controller/__init__.py
 turtlebot_controller/color_conversion.py
 turtlebot_controller/image_publisher.py
 turtlebot_controller/image_subscriber.py
+turtlebot_controller/map_exploration.py
 turtlebot_controller/object_avoidance.py
 turtlebot_controller/object_avoidance_v2.py
 turtlebot_controller.egg-info/PKG-INFO
