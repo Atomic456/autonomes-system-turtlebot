@@ -3,8 +3,8 @@ import rclpy
 import random
 
 from rclpy.node import Node
-from std_msgs.msg import PoseStamped 
-from std_msgs.msg import OccupancyGrid
+from geometry_msgs.msg import PoseStamped 
+from nav_msgs.msg import OccupancyGrid
 
 
 class MapExploration(Node):
