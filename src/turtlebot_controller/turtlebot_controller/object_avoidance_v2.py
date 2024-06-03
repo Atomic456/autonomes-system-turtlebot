@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import cv2
 import rclpy
+import cv2
 import numpy as np
 
 from rclpy.node import Node
