@@ -10,6 +10,9 @@ class ImageSubscriber(Node):
     def __init__(self):
         super().__init__("img_sub")
         self.create_subscription(Image, "/image_raw", self.display_img, 10)
+        self.create_subscription(Image, "/image_left", self.display_left, 10)
+        self.create_subscription(Image, "/image_middle", self.display_center, 10)
+        self.create_subscription(Image, "/image_right", self.display_img, 10)
         self.cv_bridge = CvBridge()
         self.get_logger().info("ImageSubscriber created successfully!")
 
@@ -18,6 +21,27 @@ class ImageSubscriber(Node):
         cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
         self.get_logger().info("imgshow...")
         cv2.imshow("Camera Image", cv2_img)
+        cv2.waitKey(1)
+
+    def display_left(self, img:Image):
+        cv2_img = self.cv_bridge.imgmsg_to_cv2(img)
+        cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
+        self.get_logger().info("imgshow...")
+        cv2.imshow("Camera Left", cv2_img)
+        cv2.waitKey(1)
+
+    def display_right(self, img:Image):
+        cv2_img = self.cv_bridge.imgmsg_to_cv2(img)
+        cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
+        self.get_logger().info("imgshow...")
+        cv2.imshow("Camera Right", cv2_img)
+        cv2.waitKey(1)
+
+    def display_center(self, img:Image):
+        cv2_img = self.cv_bridge.imgmsg_to_cv2(img)
+        cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
+        self.get_logger().info("imgshow...")
+        cv2.imshow("Camera Center", cv2_img)
         cv2.waitKey(1)
 
     
