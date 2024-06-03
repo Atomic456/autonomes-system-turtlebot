@@ -14,6 +14,8 @@ class MapExploration(Node):
         self.create_subscription(OccupancyGrid, '/map', self.safe_map,10)
         
         self.create_timer(10,self.calculate_goal_pos)
+        self.get_logger().info("Map exploration started!")
+
 
     
     def calculate_goal_pos(self):
