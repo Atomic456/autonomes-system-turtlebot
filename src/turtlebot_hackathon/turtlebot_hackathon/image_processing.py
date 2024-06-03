@@ -25,8 +25,10 @@ class ImageProcessing(Node):
 
         self.cv_bridge = CvBridge()
         self.scale = 4
+        self.get_logger().info("Image processing created successfully!")
 
     def process_image(self, img:Image):
+        self.get_logger().info("Process image...")
         pi_cam_img = self.cv_bridge.imgmsg_to_cv2(img)
         blured_img = cv2.GaussianBlur(pi_cam_img, (5,5), 0)
         hsv_img = cv2.cvtColor(blured_img, cv2.COLOR_BGR2HSV)
@@ -53,12 +55,15 @@ class ImageProcessing(Node):
 
         steering = Twist()
         if free_path == hue_left:
+            self.get_logger().info("Left path free!")
             steering.linear.x = 0.2
             steering.angular.z = (free_path / 255) * (1.5) * self.scale
         elif free_path == hue_right:
+            self.get_logger().info("Right path free!")
             steering.linear.x = 0.2
             steering.angular.z = (free_path / 255) * (-1.5) * self.scale
         else:
+            self.get_logger().info("Center path free!")
             steering.linear.x = 0.2
             steering.angular.z = 0.0
         
@@ -82,12 +87,15 @@ class ImageProcessing(Node):
 
         steering = Twist()
         if traget_path == hue_left:
+            self.get_logger().info("Target in left path!")
             steering.linear.x = 0.2
             steering.angular.z = (traget_path / 255) * (1.5) * self.scale
         elif traget_path == hue_right:
+            self.get_logger().info("Target in right path!")
             steering.linear.x = 0.2
             steering.angular.z = (traget_path / 255) * (-1.5) * self.scale
         else:
+            self.get_logger().info("Target in center path!")
             steering.linear.x = 0.2
             steering.angular.z = 0.0
         
