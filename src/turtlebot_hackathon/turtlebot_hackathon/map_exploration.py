@@ -10,7 +10,7 @@ from std_msgs.msg import OccupancyGrid
 class MapExploration(Node):
     def __init__(self):
         super().__init__('explor_note')
-        self.goal_pos_pub = self.create_publisher(PoseStamped, '/goal_pos', 10)
+        self.goal_pos_pub = self.create_publisher(PoseStamped, '/goal_pose', 10)
         self.create_subscription(OccupancyGrid, '/map', self.safe_map,10)
         
         self.create_timer(10,self.calculate_goal_pos)
@@ -24,6 +24,8 @@ class MapExploration(Node):
             goal_pos.pose.position.x = random.uniform(5.0, 5.9)  # Set the X-coordinate of the goal position
             goal_pos.pose.position.y = random.uniform(0.5, 2.5)
             self.goal_pos_pub.publish(goal_pos)
+            self.get_logger().info("Published goal position")
+
 
 
 
