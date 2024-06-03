@@ -45,7 +45,6 @@ class TurtlebotController(Node):
     def obstacle_detected(self, steering:Twist):
         self.state = States.OBSTACLE
         self.steering_pub.publish(steering)
-        time.sleep(3)
         self.state = States.EXPLORE
 
     

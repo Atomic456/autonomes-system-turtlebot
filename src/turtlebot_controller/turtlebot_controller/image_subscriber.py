@@ -12,7 +12,7 @@ class ImageSubscriber(Node):
         self.create_subscription(Image, "/image_raw", self.display_img, 10)
         self.create_subscription(Image, "/image_left", self.display_left, 10)
         self.create_subscription(Image, "/image_middle", self.display_center, 10)
-        self.create_subscription(Image, "/image_right", self.display_img, 10)
+        self.create_subscription(Image, "/image_right", self.display_right, 10)
         self.cv_bridge = CvBridge()
         self.get_logger().info("ImageSubscriber created successfully!")
 
