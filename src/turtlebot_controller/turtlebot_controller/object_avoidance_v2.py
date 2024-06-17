@@ -47,7 +47,7 @@ class ObjectAvoidance(Node):
         self.ack_pos = pos
 
     def local_path_planning(self, img:Image):
-        #self.get_logger().info("Starting path planning...")
+        self.get_logger().info("Starting path planning...")
         pi_cam_img = self.cv_bridge.imgmsg_to_cv2(img)
         obstacle_img, target_img = self.image_pre_processing(pi_cam_img)
         self.swich_behavior(obstacle_img,target_img)
@@ -69,6 +69,7 @@ class ObjectAvoidance(Node):
         #color masking
         red = [0,0,255]
         lowerLimit, upperLimit = self.get_limits(red)
+        print(lowerLimit, upperLimit)
         red_color_mask = cv2.inRange(hsv_image, lowerLimit, upperLimit)
 
         yellow_color_mask = cv2.inRange(hsv_image, np.array([40, 60, 32]), np.array([60, 100, 100]))

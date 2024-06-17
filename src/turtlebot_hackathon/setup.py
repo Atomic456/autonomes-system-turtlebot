@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "obstacle_detection = turtlebot_hackathon.obstacle_detection:main",
         ],
     },
 )
