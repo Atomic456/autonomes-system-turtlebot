@@ -89,8 +89,8 @@ class TargetDetection(Node):
         steering_val = (angle / 180) * np.pi * self.steering_dir
     
         twist_msg = Twist()
-        twist_msg.z = steering_val
-        twist_msg.x = 0.2
+        twist_msg.angular.z = steering_val
+        twist_msg.linear.x = 0.2
         return twist_msg
 
 def main(args=None):
