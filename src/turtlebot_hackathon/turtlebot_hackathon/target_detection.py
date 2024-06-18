@@ -56,7 +56,8 @@ class TargetDetection(Node):
         img_mask = hsv_img[:, fourth:3*fourth]
 
         # red
-        target_img_lower = cv2.inRange(img_mask, np.array([0, 120, 120]), np.array([10, 255, 255]))
+        red_lower, red_upper = self.get_limits([0,0,255])
+        target_img_lower = cv2.inRange(img_mask, red_lower, red_upper)
         target_img_upper = cv2.inRange(img_mask, np.array([170, 120, 120]), np.array([180, 255, 255]))
 
         target_img = cv2.bitwise_or(target_img_lower, target_img_upper)
@@ -104,6 +105,25 @@ class TargetDetection(Node):
         twist_msg.angular.z = steering_val
         twist_msg.linear.x = 0.2
         return twist_msg
+    
+    def get_limits(self, color):
+        c = np.uint8([[color]])  # BGR values
+        hsvC = cv2.cvtColor(c, cv2.COLOR_BGR2HSV)
+
+        hue = hsvC[0][0][0]  # Get the hue value
+
+        # Handle red hue wrap-around
+        if hue >= 165:  # Upper limit for divided red hue
+            lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
+            upperLimit = np.array([180, 255, 255], dtype=np.uint8)
+        elif hue <= 15:  # Lower limit for divided red hue
+            lowerLimit = np.array([0, 80, 80], dtype=np.uint8)
+            upperLimit = np.array([hue + 10, 255, 255], dtype=np.uint8)
+        else:
+            lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
+            upperLimit = np.array([hue + 10, 255, 255], dtype=np.uint8)
+
+        return lowerLimit, upperLimit
 
 def main(args=None):
     rclpy.init(args=args)
