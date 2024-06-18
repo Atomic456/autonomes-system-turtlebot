@@ -51,7 +51,8 @@ class ObstacleDetection(Node):
         # Seperate image into three segments
         img_mask = hsv_img[:, fourth:3*fourth]
 
-        #r
+        #red 
+        # np.array([0, 30, 40]), np.array([25, 100, 100])
 
         # yellow 
         obstacle_img = cv2.inRange(img_mask, np.array([45, 30, 40]), np.array([63, 100, 100]))
@@ -85,54 +86,6 @@ class ObstacleDetection(Node):
 
     def convert_angel_to_steering(self, angle):
         return (angle / 180) * self.steering_dir
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-            
-
-
-
-
-
 
 def main(args=None):
     rclpy.init(args=args)
