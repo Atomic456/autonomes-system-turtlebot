@@ -56,7 +56,10 @@ class TargetDetection(Node):
         img_mask = hsv_img[:, fourth:3*fourth]
 
         # red
-        target_img = cv2.inRange(img_mask, np.array([0, 30, 40]), np.array([25, 100, 100]))
+        target_img_lower = cv2.inRange(img_mask, np.array([0, 120, 120]), np.array([10, 255, 255]))
+        target_img_upper = cv2.inRange(img_mask, np.array([170, 120, 120]), np.array([180, 255, 255]))
+
+        target_img = cv2.bitwise_or(target_img_lower, target_img_upper)
 
         self.target_mask_pub.publish(self.cv_bridge.cv2_to_imgmsg(target_img))
 
