@@ -13,7 +13,7 @@ class ObstacleDetection(Node):
     def __init__(self):
         super().__init__("object_avoidance")
         self.obstacle_steering_pub = self.create_publisher(Twist, '/obstacle_cmd_vel', 10)
-        self.create_subscription(Image, "/image_raw", self.process_image, 10)
+        self.create_subscription(Image, "/image_raw", self.detect_obstacle, 10)
         self.cv_bridge = CvBridge()
         self.img_hight = 480
         self.img_width = 640

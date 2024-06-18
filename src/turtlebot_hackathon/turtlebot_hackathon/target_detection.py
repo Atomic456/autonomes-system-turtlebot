@@ -12,14 +12,14 @@ from cv_bridge import CvBridge
 class TargetDetection(Node):
     def __init__(self):
         super().__init__("target_detection")
-        self.obstacle_steering_pub = self.create_publisher(Twist, '/target_cmd_vel', 10)
-        self.create_subscription(Image, "/image_raw", self.process_image, 10)
+        self.target_steering_pub = self.create_publisher(Twist, '/target_cmd_vel', 10)
+        self.create_subscription(Image, "/image_raw", self.detect_target, 10)
         self.cv_bridge = CvBridge()
         self.img_hight = 480
         self.img_width = 640
         self.get_logger().info("Target Detection Node created successfully!")
     
-    def detect_obstacle(self, img:Image):
+    def detect_target(self, img:Image):
         cv_img =  self.cv_bridge.imgmsg_to_cv2(img)
         self.img_hight, self.img_width, _ = cv_img.shape
         self.robot_dir = [0, self.img_hight]
@@ -30,7 +30,7 @@ class TargetDetection(Node):
         avrage_slope = self.avarge_hough_lines(lines)
         angle = self.calculate_obstacle_dir(avrage_slope)
 
-        self.obstacle_steering_pub(self.convert_angel_to_steering(angle))
+        self.target_steering_pub(self.convert_angel_to_steering(angle))
 
 
     def houghLines(self, masked_Image):
