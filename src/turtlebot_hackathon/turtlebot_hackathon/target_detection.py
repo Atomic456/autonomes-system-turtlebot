@@ -9,24 +9,24 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge
 
-class ObstacleDetection(Node):
+class TargetDetection(Node):
     def __init__(self):
-        super().__init__("object_avoidance")
-        self.obstacle_steering_pub = self.create_publisher(Twist, '/obstacle_cmd_vel', 10)
+        super().__init__("target_detection")
+        self.obstacle_steering_pub = self.create_publisher(Twist, '/target_cmd_vel', 10)
         self.create_subscription(Image, "/image_raw", self.process_image, 10)
         self.cv_bridge = CvBridge()
         self.img_hight = 480
         self.img_width = 640
-        self.get_logger().info("Obstacle Avoidance Node created successfully!")
+        self.get_logger().info("Target Detection Node created successfully!")
     
     def detect_obstacle(self, img:Image):
         cv_img =  self.cv_bridge.imgmsg_to_cv2(img)
         self.img_hight, self.img_width, _ = cv_img.shape
-        self.robot_dir = [0, self.img_hight * (-1)]
+        self.robot_dir = [0, self.img_hight]
         blured_img = cv2.GaussianBlur(cv_img, (3,3), 0)
         hsv_img = cv2.cvtColor(blured_img, cv2.COLOR_BGR2HSV)
-        obstacle_img = self.mask_image(hsv_img)
-        lines = self.houghLines(obstacle_img)
+        target_img = self.mask_image(hsv_img)
+        lines = self.houghLines(target_img)
         avrage_slope = self.avarge_hough_lines(lines)
         angle = self.calculate_obstacle_dir(avrage_slope)
 
@@ -51,13 +51,10 @@ class ObstacleDetection(Node):
         # Seperate image into three segments
         img_mask = hsv_img[:, fourth:3*fourth]
 
-        #red 
-        # np.array([0, 30, 40]), np.array([25, 100, 100])
+        # red
+        target_img = cv2.inRange(img_mask, np.array([0, 30, 40]), np.array([25, 100, 100]))
 
-        # yellow 
-        obstacle_img = cv2.inRange(img_mask, np.array([45, 30, 40]), np.array([63, 100, 100]))
-
-        return obstacle_img
+        return target_img
 
     def avarge_hough_lines(self, lines):
         slopes = []
@@ -77,7 +74,7 @@ class ObstacleDetection(Node):
         
     
     def calculate_obstacle_dir(self, avrage_slope):
-        self.obstacle_dir = [1,avrage_slope]
+        self.target_dir = [1,avrage_slope]
 
         self.steering_dir = (avrage_slope / abs(avrage_slope)) * (-1)
 
@@ -85,11 +82,12 @@ class ObstacleDetection(Node):
 
 
     def convert_angel_to_steering(self, angle):
+        angle = 90 - angle
         return (angle / 180) * np.pi * self.steering_dir
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ObstacleDetection()
+    node = TargetDetection()
     rclpy.spin(node)
     rclpy.shutdown()
 
