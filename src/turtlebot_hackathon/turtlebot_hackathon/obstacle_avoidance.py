@@ -60,6 +60,9 @@ class ObstacleDetection(Node):
         return obstacle_img
 
     def avarge_hough_lines(self, lines):
+        if lines is None or len(line)==0:
+            return 0
+        
         slopes = []
         for line in lines:
             x1, y1, x2, y2 = line.reshape(4)

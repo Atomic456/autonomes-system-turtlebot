@@ -57,6 +57,9 @@ class TargetDetection(Node):
         return target_img
 
     def avarge_hough_lines(self, lines):
+        if lines is None or len(line)==0:
+            return 0
+
         slopes = []
         for line in lines:
             x1, y1, x2, y2 = line.reshape(4)
@@ -78,7 +81,7 @@ class TargetDetection(Node):
 
         self.steering_dir = (avrage_slope / abs(avrage_slope)) * (-1)
 
-        return np.arccos((self.robot_dir[0]*self.target_dir[0]+self.robot_dir[0]*self.target_dir[0])/(math.sqrt(self.robot_dir[0]**2+self.robot_dir[1]**2)*math.sqrt(self.target_dirna[0]**2+self.target_dir[1]**2)))
+        return np.arccos((self.robot_dir[0]*self.target_dir[0]+self.robot_dir[0]*self.target_dir[0])/(math.sqrt(self.robot_dir[0]**2+self.robot_dir[1]**2)*math.sqrt(self.target_dir[0]**2+self.target_dir[1]**2)))
 
 
     def convert_angel_to_steering(self, angle):
