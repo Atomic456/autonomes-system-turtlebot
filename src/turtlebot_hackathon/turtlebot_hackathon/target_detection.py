@@ -13,6 +13,8 @@ class TargetDetection(Node):
     def __init__(self):
         super().__init__("target_detection")
         self.target_steering_pub = self.create_publisher(Twist, '/target_cmd_vel', 10)
+        self.target_mask_pub = self.create_publisher(Image, '/target_mask', 10)
+        self.target_canny_pub = self.create_publisher(Image, '/target_canny', 10)
         self.create_subscription(Image, "/image_raw", self.detect_target, 10)
         self.cv_bridge = CvBridge()
         self.img_hight = 480
@@ -36,6 +38,8 @@ class TargetDetection(Node):
     def houghLines(self, masked_Image):
         target_edges = cv2.Canny(masked_Image, 252, 255)
 
+        self.target_canny_pub.publish(self.cv_bridge.cv2_to_imgmsg(target_edges))
+
         min_line_length = 27
         max_line_gap = 2
         rho = 2
@@ -53,6 +57,8 @@ class TargetDetection(Node):
 
         # red
         target_img = cv2.inRange(img_mask, np.array([0, 30, 40]), np.array([25, 100, 100]))
+
+        self.target_mask_pub.publish(self.cv_bridge.cv2_to_imgmsg(target_img))
 
         return target_img
 
@@ -77,6 +83,9 @@ class TargetDetection(Node):
         
     
     def calculate_obstacle_dir(self, avrage_slope):
+        if avrage_slope == 0:
+            return 90
+        
         self.target_dir = [1,avrage_slope]
 
         self.steering_dir = (avrage_slope / abs(avrage_slope)) * (-1)

@@ -13,6 +13,8 @@ class ObstacleDetection(Node):
     def __init__(self):
         super().__init__("object_avoidance")
         self.obstacle_steering_pub = self.create_publisher(Twist, '/obstacle_cmd_vel', 10)
+        self.obstaclet_mask_pub = self.create_publisher(Image, '/obstacle_mask', 10)
+        self.obstacle_canny_pub = self.create_publisher(Image, '/obstacle_canny', 10)
         self.create_subscription(Image, "/image_raw", self.detect_obstacle, 10)
         self.cv_bridge = CvBridge()
         self.img_hight = 480
@@ -80,6 +82,9 @@ class ObstacleDetection(Node):
         
     
     def calculate_obstacle_dir(self, avrage_slope):
+        if avrage_slope == 0:
+            return 0
+
         self.obstacle_dir = [1,avrage_slope]
 
         self.steering_dir = (avrage_slope / abs(avrage_slope)) * (-1)
