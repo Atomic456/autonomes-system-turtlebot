@@ -30,7 +30,7 @@ class TargetDetection(Node):
         avrage_slope = self.avarge_hough_lines(lines)
         angle = self.calculate_obstacle_dir(avrage_slope)
 
-        self.target_steering_pub(self.convert_angel_to_steering(angle))
+        self.target_steering_pub.publish(self.convert_angel_to_steering(angle))
 
 
     def houghLines(self, masked_Image):
@@ -78,12 +78,17 @@ class TargetDetection(Node):
 
         self.steering_dir = (avrage_slope / abs(avrage_slope)) * (-1)
 
-        return np.arccos((self.robot_dir[0]*self.obstacle_dir[0]+self.robot_dir[0]*self.obstacle_dir[0])/(math.sqrt(self.robot_dir[0]**2+self.robot_dir[1]**2)*math.sqrt(self.obstacle_dir[0]**2+self.obstacle_dir[1]**2)))
+        return np.arccos((self.robot_dir[0]*self.target_dir[0]+self.robot_dir[0]*self.target_dir[0])/(math.sqrt(self.robot_dir[0]**2+self.robot_dir[1]**2)*math.sqrt(self.target_dirna[0]**2+self.target_dir[1]**2)))
 
 
     def convert_angel_to_steering(self, angle):
         angle = 90 - angle
-        return (angle / 180) * np.pi * self.steering_dir
+        steering_val = (angle / 180) * np.pi * self.steering_dir
+    
+        twist_msg = Twist()
+        twist_msg.z = steering_val
+        twist_msg.x = 0.2
+        return twist_msg
 
 def main(args=None):
     rclpy.init(args=args)
