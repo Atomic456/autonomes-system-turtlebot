@@ -24,7 +24,7 @@ class TargetDetection(Node):
     def detect_target(self, img:Image):
         cv_img =  self.cv_bridge.imgmsg_to_cv2(img)
         self.img_hight, self.img_width, _ = cv_img.shape
-        self.robot_dir = [0, self.img_hight]
+        self.robot_dir = [0, self.img_hight * (-1)]
         blured_img = cv2.GaussianBlur(cv_img, (3,3), 0)
         hsv_img = cv2.cvtColor(blured_img, cv2.COLOR_BGR2HSV)
         target_img = self.mask_image(hsv_img)
